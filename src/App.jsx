@@ -43,7 +43,7 @@ export default function Home() {
                 <Route path="/privacy" element={<PrivacyPolicy />} />
                 <Route path="/terms" element={<TermsAndConditions />} />
                 <Route path="/refunds" element={<Refunds />} />
-                <Route path="*" element={<NotFound />} /> {/* Add this line for 404 handling */}
+                <Route path="*" element={<NotFound />} /> 
             </Routes>
             <Footer />
         </Router>

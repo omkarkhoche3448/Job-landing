@@ -16,7 +16,16 @@ const Footer = () => {
     return (
         <footer className="text-white relative"> {/* Added relative positioning */}
             {/* Bottom Glow Effect */}
-            <div className="absolute inset-x-0 bottom-0 h-80 bg-gradient-to-t from-lime-400/20 via-transparent to-transparent pointer-events-none"></div> {/* Increased intensity from /10 to /20 */}
+            <div
+                className="
+                    absolute inset-x-0 bottom-0 h-40
+                    bg-gradient-to-t
+                    from-lime-400/10
+                    sm:h-80 sm:from-lime-400/20
+                    via-transparent to-transparent
+                    pointer-events-none
+                "
+            ></div>
 
             <div className="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:py-16 lg:px-8 relative z-10"> {/* Added relative z-10 */}
                 <div className="grid gap-8 md:grid-cols-3">

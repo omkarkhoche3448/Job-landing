@@ -1,6 +1,5 @@
 import React from "react";
 import Tag from "../components/Tag";
-import { motion } from "framer-motion";
 import { Check } from "lucide-react";
 import Button from "../components/Button";
 
@@ -85,7 +84,7 @@ function Pricing() {
 
                 <div className="mt-10 grid grid-cols-1 md:grid-cols-3 gap-5">
                     {pricingPlans.map((plan, index) => (
-                        <motion.div
+                        <div
                             key={index}
                             className={`bg-neutral-900 border ${plan.recommended ? 'border-lime-400/50' : 'border-white/10'} rounded-xl p-6 hover:border-lime-400/30 transition-all duration-300 relative`}
                             variants={cardVariants}
@@ -125,7 +124,7 @@ function Pricing() {
                                     ))}
                                 </div>
                             </div>
-                        </motion.div>
+                        </div>
                     ))}
                 </div>
                 
