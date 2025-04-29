@@ -1,0 +1,33 @@
+@import "tailwindcss";
+
+
+:root {
+  --font-inter: 'Inter', sans-serif;
+}
+
+/* Container styles */
+.container {
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+@media (min-width: 768px) {
+  .container {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+}
+
+@media (min-width: 1200px) {
+  .container {
+    padding-left: 4rem;
+    padding-right: 4rem;
+  }
+}
+
+/* Font family */
+body {
+  font-family: var(--font-inter);
+}
