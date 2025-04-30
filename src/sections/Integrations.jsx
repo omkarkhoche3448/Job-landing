@@ -1,76 +1,83 @@
-import React from "react";
+import React, { useRef } from "react";
 import Tag from "../components/Tag";
-import figmaIcon from "../assets/images/figma-logo.svg";
-import notionIcon from "../assets/images/notion-logo.svg";
-import slackIcon from "../assets/images/slack-logo.svg";
-import relumeIcon from "../assets/images/relume-logo.svg";
-import framerIcon from "../assets/images/framer-logo.svg";
-import githubIcon from "../assets/images/github-logo.svg";
+import linkedinIcon from "../assets/images/LinkedIn.png";
+import indeedIcon from "../assets/images/Indeed.png";
+import zipRecruiterIcon from "../assets/images/ZipRecruiter.jpeg";
+import glassdoorIcon from "../assets/images/glassdoor.png";
 import IntegrationColumn from "../components/IntegrationColumn";
+import { useInView, motion } from "framer-motion";
 
 const integrations = [
     {
-        name: "Figma",
-        icon: figmaIcon,
-        description: "Figma is a collaborative interface design tool.",
+        name: "LinkedIn",
+        icon: linkedinIcon,
+        description: "World's largest professional network for job opportunities.",
     },
     {
-        name: "Notion",
-        icon: notionIcon,
-        description: "Notion is an all-in-one workspace for notes and docs.",
+        name: "Indeed",
+        icon: indeedIcon,
+        description: "Leading job site connecting millions with employers globally.",
     },
     {
-        name: "Slack",
-        icon: slackIcon,
-        description: "Slack is a powerful team communication platform.",
+        name: "ZipRecruiter",
+        icon: zipRecruiterIcon,
+        description: "Smart job matching platform for seamless hiring.",
     },
     {
-        name: "Relume",
-        icon: relumeIcon,
-        description: "Relume is a no-code website builder and design system.",
-    },
-    {
-        name: "Framer",
-        icon: framerIcon,
-        description: "Framer is a professional website prototyping tool.",
-    },
-    {
-        name: "GitHub",
-        icon: githubIcon,
-        description: "GitHub is the leading platform for code collaboration.",
+        name: "Glassdoor",
+        icon: glassdoorIcon,
+        description: "Find jobs with company reviews and salary insights.",
     },
 ];
 
 function Integrations() {
-    return (
-        <section className="py-24 overflow-hidden ">
-            <div className="container">
-                <div className="grid lg:grid-cols-2 items-center lg:gap-16">
-                    <div>
-                        <Tag>Integration</Tag>
-                        <h2 className="text-6xl font-medium mt-6">
-                            Plays well with{" "}
-                            <span className="text-lime-400 ">others</span>
-                        </h2>
+    const containerRef = useRef(null);
+    const isInView = useInView(containerRef, { once: true, amount: 0.2 });
 
-                        <p className="text-white/50 mt-4 text-lg ">
-                            Layers seamessly connects with your favourite tools
-                            and platforms. It's easy to plug into any workflow
-                            and collaborate platforms.
-                        </p>
-                    </div>
-                    <div>
-                        <div className="grid md:grid-cols-2 gap-4 lg:h-[800px] h-[400px] lg:mt-0 mt-8 overflow-hidden [mask-image:linear-gradient(to_bottom,transparent,black_10%,black_90%,transparent)]">
-                            <IntegrationColumn integrations={integrations} />
-                            <IntegrationColumn
-                                integrations={integrations.slice().reverse()}
-                                className="hidden md:flex"
-                                reverse
-                            />
+    // Split integrations into two columns for display
+    const firstColumn = integrations.slice(0, 2);
+    const secondColumn = integrations.slice(2);
+
+    return (
+        <section className="py-20 lg:py-48 relative overflow-hidden" ref={containerRef}>
+            <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={isInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.5 }}
+            >
+                {/* Background gradient */}
+                <div className="absolute inset-0 bg-gradient-to-b from-transparent via-lime-400/5 to-transparent"></div>
+
+                <div className="container max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+                    <div className="grid lg:grid-cols-2 items-center lg:gap-12">
+                        <div>
+                            <div className="flex justify-start">
+                                <Tag>Aggregate</Tag>
+                            </div>
+                            <h2 className="text-4xl lg:text-5xl font-medium mt-4 leading-tight">
+                                Aggregating jobs from{" "}
+                                <span className="text-lime-400">leading platforms</span>
+                            </h2>
+
+                            <p className="text-white/50 mt-4 text-base">
+                                Handjobs pulls listings from top sites like LinkedIn, Indeed, and ZipRecruiter — bringing every opportunity into one unified search. No more jumping between job boards.
+                            </p>
+                        </div>
+                        <div>
+                            <div className="grid md:grid-cols-2 gap-5 lg:h-[600px] h-[400px] lg:mt-0 mt-8 overflow-hidden [mask-image:linear-gradient(to_bottom,transparent,black_10%,black_90%,transparent)]">
+                                <IntegrationColumn 
+                                    integrations={firstColumn} 
+                                />
+                                <IntegrationColumn
+                                    integrations={secondColumn}
+                                    className="hidden md:flex"
+                                    reverse
+                                />
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
+            </motion.div>
         </section>
     );
 }
