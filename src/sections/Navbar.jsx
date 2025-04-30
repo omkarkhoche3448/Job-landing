@@ -23,22 +23,29 @@ function Navbar() {
 
         const observerOptions = {
             root: null,
-            rootMargin: '-50% 0px -50% 0px',
+            rootMargin: '-10% 0px -90% 0px',
             threshold: 0
         };
 
         const observerCallback = (entries) => {
-            let foundActive = false;
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    setActiveSection(`#${entry.target.id}`);
-                    foundActive = true;
-                }
-            });
+            let currentActive;
+            if (window.scrollY < 50) {
+                currentActive = "/";
+            } else {
+                let highestIntersectingEntry = null;
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        if (!highestIntersectingEntry || entry.target.offsetTop < highestIntersectingEntry.target.offsetTop) {
+                            highestIntersectingEntry = entry;
+                        }
+                    }
+                });
 
-            if (!foundActive && window.scrollY < window.innerHeight * 0.4) {
-                setActiveSection("/");
+                if (highestIntersectingEntry) {
+                    currentActive = `#${highestIntersectingEntry.target.id}`;
+                }
             }
+            setActiveSection(prev => prev !== currentActive ? currentActive : prev);
         };
 
         const observer = new IntersectionObserver(observerCallback, observerOptions);
@@ -49,12 +56,25 @@ function Navbar() {
             }
         });
 
+        let scrollTimeout;
+        const handleScroll = () => {
+            clearTimeout(scrollTimeout);
+            scrollTimeout = setTimeout(() => {
+                if (window.scrollY < 50) {
+                    setActiveSection("/");
+                }
+            }, 50);
+        };
+        window.addEventListener('scroll', handleScroll, { passive: true });
+
         return () => {
             sections.forEach(section => {
                 if (section) {
                     observer.unobserve(section);
                 }
             });
+            window.removeEventListener('scroll', handleScroll);
+            clearTimeout(scrollTimeout);
         };
     }, []);
 
