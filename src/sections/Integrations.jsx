@@ -1,7 +1,7 @@
 import React, { useRef } from "react";
 import Tag from "../components/Tag";
 import linkedinIcon from "../assets/images/LinkedIn.png";
-import indeedIcon from "../assets/images/Indeed.jpeg";
+import indeedIcon from "../assets/images/Indeed.png";
 import zipRecruiterIcon from "../assets/images/ZipRecruiter.jpeg";
 import glassdoorIcon from "../assets/images/glassdoor.png";
 import IntegrationColumn from "../components/IntegrationColumn";
