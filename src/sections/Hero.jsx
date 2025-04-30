@@ -1,67 +1,28 @@
 import React, { useEffect, useState } from "react";
 import Button from "../components/Button";
-import Pointer from "../components/Pointer";
-import { motion, useAnimate } from "framer-motion";
+import { motion } from "framer-motion";
 import cursorImage from "../assets/images/cursor-you.svg";
-import { Search, Briefcase, ArrowRight, Zap, Globe, CheckCircle } from "lucide-react";
+import { Search, Briefcase, Zap, Globe, CheckCircle } from "lucide-react";
 
 function Hero() {
-    const [leftPointerScope, leftPointerAnimate] = useAnimate();
-    const [rightPointerScope, rightPointerAnimate] = useAnimate();
-    const [mihirPointerScope, mihirPointerAnimate] = useAnimate();
-    const [manthanPointerScope, manthanPointerAnimate] = useAnimate();
     const [email, setEmail] = useState("");
-
-    useEffect(() => {
-        leftPointerAnimate([
-            [leftPointerScope.current, { opacity: 1 }, { duration: 0.5 }],
-            [leftPointerScope.current, { y: 0, x: -100 }, { duration: 0.5 }],
-            [
-                leftPointerScope.current,
-                { y: [0, 16, 0], x: 0 },
-                { duration: 0.5, ease: "easeInOut" },
-            ],
-        ]);
-
-        rightPointerAnimate([
-            [
-                rightPointerScope.current,
-                { opacity: 1 },
-                { duration: 0.5, delay: 0.8 },
-            ],
-            [rightPointerScope.current, { y: 0, x: 175 }, { duration: 0.5 }],
-            [
-                rightPointerScope.current,
-                { y: [0, 20, 0], x: 0 },
-                { duration: 0.5, ease: "easeInOut" },
-            ],
-        ]);
-
-        mihirPointerAnimate([
-            [mihirPointerScope.current, { opacity: 1 }, { duration: 0.5, delay: 1.2 }],
-            [mihirPointerScope.current, { y: 0, x: -50 }, { duration: 0.5 }],
-            [
-                mihirPointerScope.current,
-                { y: [0, 18, 0], x: 0 },
-                { duration: 0.5, ease: "easeInOut" },
-            ],
-        ]);
-
-        manthanPointerAnimate([
-            [manthanPointerScope.current, { opacity: 1 }, { duration: 0.5, delay: 1.6 }],
-            [manthanPointerScope.current, { y: 0, x: 125 }, { duration: 0.5 }],
-            [
-                manthanPointerScope.current,
-                { y: [0, 22, 0], x: 0 },
-                { duration: 0.5, ease: "easeInOut" },
-            ],
-        ]);
-    }, [leftPointerAnimate, rightPointerAnimate, mihirPointerAnimate, manthanPointerAnimate]);
 
     const handleSubmit = (e) => {
         e.preventDefault();
         console.log("Email submitted:", email);
         setEmail("");
+    };
+
+    // Custom CSS for the flowing text effect
+    const flowingTextStyle = {
+        backgroundImage: 'linear-gradient(90deg, #4ade80, #22c55e, #34d399, #0ea5e9, #22c55e, #4ade80)',
+        backgroundSize: '300% 100%',
+        animation: 'flowingText 10s linear infinite',
+        WebkitBackgroundClip: 'text',
+        WebkitTextFillColor: 'transparent',
+        backgroundClip: 'text',
+        textFillColor: 'transparent',
+        display: 'inline-block'
     };
 
     return (
@@ -72,8 +33,16 @@ function Hero() {
                 cursor: `url(${cursorImage}), auto`,
             }}
         >
+            {/* Custom CSS keyframes for the flowing effect */}
+            <style jsx="true">{`
+                @keyframes flowingText {
+                    0% { background-position: 300% 50%; }
+                    100% { background-position: 0% 50%; }
+                }
+            `}</style>
+            
             {/* Animated background shapes */}
-            <div className="absolute inset-0 overflow-hidden">
+            <div className="absolute inset-0 overflow-hidden pointer-events-none">
                 <motion.div
                     className="absolute top-20 left-10 w-64 h-64 rounded-full bg-gradient-to-r from-lime-400/10 to-blue-500/10 blur-3xl"
                     animate={{
@@ -97,48 +66,19 @@ function Hero() {
             </div>
 
             <div className="container max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative">
-                {/* Pointers */}
-                <motion.div
-                    ref={leftPointerScope}
-                    initial={{ opacity: 0, y: 100, x: -200 }}
-                    className="absolute top-96 left-56 hidden lg:block"
-                >
-                    <Pointer name="Soham" color="purple" />
-                </motion.div>
-
-                <motion.div
-                    ref={rightPointerScope}
-                    initial={{ opacity: 0, x: 275, y: 100 }}
-                    className="absolute top-4 right-80 hidden lg:block"
-                >
-                    <Pointer color="red" name="Omkar" />
-                </motion.div>
-
-                <motion.div
-                    ref={mihirPointerScope}
-                    initial={{ opacity: 0, x: -150, y: 100 }}
-                    className="absolute top-48 left-24 hidden lg:block"
-                >
-                    <Pointer color="blue" name="Mihir" />
-                </motion.div>
-
-                <motion.div
-                    ref={manthanPointerScope}
-                    initial={{ opacity: 0, x: 225, y: 100 }}
-                    className="absolute top-64 right-32 hidden lg:block"
-                >
-                    <Pointer color="green" name="Manthan" />
-                </motion.div>
-
                 {/* Hero content */}
                 <div className="flex justify-center">
                     <motion.div
-                        className="inline-flex py-1 px-3 bg-gradient-to-r from-purple-400 to-pink-400 rounded-full text-neutral-950 font-semibold"
+                        className="inline-flex py-1.5 px-4 border border-white/20 rounded-full text-white/90 font-medium relative overflow-hidden bg-white/5 backdrop-blur-sm"
                         initial={{ y: -20, opacity: 0 }}
                         animate={{ y: 0, opacity: 1 }}
                         transition={{ delay: 0.2 }}
                     >
-                        <span className="animate-pulse">✨</span> Launching Soon
+                        {/* Shimmer effect overlay */}
+                        <span className="absolute inset-0 w-full h-full">
+                            <span className="absolute inset-0 -translate-x-full animate-[shimmer_2s_infinite] bg-gradient-to-r from-transparent via-white/20 to-transparent"></span>
+                        </span>
+                        <span className="mr-1.5">✨</span> Launching Soon
                     </motion.div>
                 </div>
 
@@ -148,7 +88,7 @@ function Hero() {
                     animate={{ y: 0, opacity: 1 }}
                     transition={{ delay: 0.4 }}
                 >
-                    Tired of <span className="text-lime-400">endless</span> job hunting?
+                    Tired of <span style={flowingTextStyle}>endless</span> job hunting?
                 </motion.h1>
 
                 <motion.p
