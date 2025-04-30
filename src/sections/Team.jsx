@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { Linkedin, Instagram, Mail, X, Github } from "lucide-react"; 
-import { motion } from "framer-motion";
 import Tag from "../components/Tag";
 
 const teamMembers = [
@@ -67,14 +66,9 @@ function Team() {
 
                 <div className="mt-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
                     {teamMembers.map((member, idx) => (
-                        <motion.div
+                        <div
                             key={idx}
                             className="group relative /50 backdrop-blur-sm rounded-xl overflow-hidden border border-white/10 hover:border-lime-400/30 transition-all duration-300"
-                            initial={{ opacity: 0, y: 20 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ duration: 0.5, delay: idx * 0.1 }}
-                            whileHover={{ y: -5 }}
                             onClick={() => setSelectedMember(member)}
                         >
                             <div className="aspect-[4/5] overflow-hidden">
@@ -131,24 +125,18 @@ function Team() {
                                     )}
                                 </div>
                             </div>
-                        </motion.div>
+                        </div>
                     ))}
                 </div>
 
                 {/* Modal with proper content */}
                 {selectedMember && (
-                    <motion.div
+                    <div
                         className="fixed inset-0 bg-black/90 backdrop-blur-sm z-50 flex items-center justify-center p-4"
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        exit={{ opacity: 0 }}
                         onClick={() => setSelectedMember(null)}
                     >
-                        <motion.div
+                        <div
                             className="/80 backdrop-blur-md border border-white/10 rounded-xl p-6 max-w-lg w-full relative"
-                            initial={{ opacity: 0, y: 20 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            exit={{ opacity: 0, y: 20 }}
                             onClick={(e) => e.stopPropagation()}
                         >
                             <button
@@ -195,8 +183,8 @@ function Team() {
                                     </div>
                                 </div>
                             </div>
-                        </motion.div>
-                    </motion.div>
+                        </div>
+                    </div>
                 )}
             </div>
         </section>

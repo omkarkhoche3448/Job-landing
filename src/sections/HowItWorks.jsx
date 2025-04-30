@@ -1,11 +1,8 @@
-import React, { useRef } from "react";
+import React from "react";
 import Tag from "../components/Tag";
 import { Search, Database, FileSearch, Send } from "lucide-react";
-import { motion, useInView } from "framer-motion";
 
 function HowItWorks() {
-    const containerRef = useRef(null);
-    const isInView = useInView(containerRef, { once: true, amount: 0.2 });
     const integrations = [
         {
             title: "Aggregate",
@@ -35,14 +32,9 @@ function HowItWorks() {
 
     return (
         <section className="py-16 px-4 relative overflow-hidden" id="how-it-works">
-            <div className="max-w-5xl mx-auto relative" ref={containerRef}>
+            <div className="max-w-5xl mx-auto relative">
                 {/* Header section */}
-                <motion.div
-                    className="text-center mb-12"
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={isInView ? { opacity: 1, y: 0 } : {}}
-                    transition={{ duration: 0.5 }}
-                >
+                <div className="text-center mb-12">
                     <div className="inline-block">
                         <Tag>How It Works</Tag>
                     </div>
@@ -53,17 +45,14 @@ function HowItWorks() {
                     <p className="text-white/50 mt-4 text-lg max-w-2xl mx-auto">
                         Our platform works tirelessly behind the scenes to bring you the best opportunities with minimal effort.
                     </p>
-                </motion.div>
+                </div>
 
                 {/* Grid layout */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mt-8">
                     {integrations.map((integration, index) => (
-                        <motion.div
+                        <div
                             key={index}
                             className="/50 rounded-xl p-6 border border-white/10 backdrop-blur-sm hover:border-lime-400/30 transition-all duration-300"
-                            initial={{ opacity: 0, y: 20 }}
-                            animate={isInView ? { opacity: 1, y: 0 } : {}}
-                            transition={{ duration: 0.5, delay: index * 0.1 }}
                             whileHover={{ y: -5 }}
                         >
                             <div className="flex items-start gap-4">
@@ -77,7 +66,7 @@ function HowItWorks() {
                                     </p>
                                 </div>
                             </div>
-                        </motion.div>
+                        </div>
                     ))}
                 </div>
             </div>

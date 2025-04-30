@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import logoImage from "../assets/images/logo.svg";
 import { Menu, X } from "lucide-react";
 import Button from "../components/Button";
@@ -14,6 +14,65 @@ const navLinks = [
 
 function Navbar() {
     const [isOpen, setIsOpen] = useState(false);
+    const [activeSection, setActiveSection] = useState("/");
+
+    useEffect(() => {
+        const sections = navLinks
+            .map(link => link.href.startsWith("#") ? document.getElementById(link.href.substring(1)) : null)
+            .filter(section => section !== null);
+
+        const observerOptions = {
+            root: null,
+            rootMargin: '-50% 0px -50% 0px',
+            threshold: 0
+        };
+
+        const observerCallback = (entries) => {
+            let foundActive = false;
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    setActiveSection(`#${entry.target.id}`);
+                    foundActive = true;
+                }
+            });
+
+            if (!foundActive && window.scrollY < window.innerHeight * 0.4) {
+                setActiveSection("/");
+            }
+        };
+
+        const observer = new IntersectionObserver(observerCallback, observerOptions);
+
+        sections.forEach(section => {
+            if (section) {
+                observer.observe(section);
+            }
+        });
+
+        return () => {
+            sections.forEach(section => {
+                if (section) {
+                    observer.unobserve(section);
+                }
+            });
+        };
+    }, []);
+
+    const handleSmoothScroll = (event, targetId) => {
+        event.preventDefault();
+        if (targetId === "/") {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            setActiveSection("/");
+        } else {
+            const targetElement = document.getElementById(targetId.substring(1));
+            if (targetElement) {
+                targetElement.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+        if (isOpen) {
+            setIsOpen(false);
+        }
+    };
 
     return (
         <header className="fixed top-0 left-0 w-full z-50">
@@ -33,7 +92,12 @@ function Navbar() {
                             <div className="hidden lg:flex justify-center items-center">
                                 <nav className="flex gap-6 font-medium">
                                     {navLinks.map((each) => (
-                                        <a href={each.href} key={each.href}>
+                                        <a 
+                                            href={each.href} 
+                                            key={each.href}
+                                            onClick={(e) => handleSmoothScroll(e, each.href)}
+                                            className={`transition-colors duration-300 ${activeSection === each.href ? 'text-lime-400' : 'text-white hover:text-lime-300'}`}
+                                        >
                                             {each.label}
                                         </a>
                                     ))}
@@ -94,16 +158,22 @@ function Navbar() {
                                     initial={{ height: 0 }}
                                     animate={{ height: "auto" }}
                                     exit={{ height: 0 }}
+                                    transition={{ duration: 0.3, ease: "easeInOut" }}
                                     className="overflow-hidden lg:hidden"
                                 >
-                                    <div className="flex flex-col items-center gap-4 py-4">
+                                    <div className="flex flex-col items-center gap-4 py-4 border-t border-white/15 mt-2">
                                         {navLinks.map((link) => (
-                                            <a key={link.href} href={link.href}>
+                                            <a 
+                                                key={link.href} 
+                                                href={link.href}
+                                                onClick={(e) => handleSmoothScroll(e, link.href)}
+                                                className={`block w-full text-center py-2 transition-colors duration-300 ${activeSection === link.href ? 'text-lime-400' : 'text-white hover:text-lime-300'}`}
+                                            >
                                                 {link.label}
                                             </a>
                                         ))}
                                         <Button
-                                            className="w-3/4"
+                                            className="w-3/4 mt-2"
                                             variant="secondary"
                                         >
                                             Log In
