@@ -33,11 +33,28 @@ function Hero() {
                 cursor: `url(${cursorImage}), auto`,
             }}
         >
-            {/* Custom CSS keyframes for the flowing effect */}
+            {/* Custom CSS keyframes for the flowing text and shimmer effects */}
             <style jsx="true">{`
                 @keyframes flowingText {
                     0% { background-position: 300% 50%; }
                     100% { background-position: 0% 50%; }
+                }
+                
+                @keyframes shimmerEffect {
+                     0%, 30% { transform: translateX(-100%); }
+                     50%, 80% { transform: translateX(100%); }
+                     80.01%, 100% { transform: translateX(-100%); }
+                }
+                
+                .shimmer-effect {
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+                    transform: translateX(-100%);
+                    animation: shimmerEffect 4s linear infinite;
                 }
             `}</style>
             
@@ -69,16 +86,15 @@ function Hero() {
                 {/* Hero content */}
                 <div className="flex justify-center">
                     <motion.div
-                        className="inline-flex py-1.5 px-4 border border-white/20 rounded-full text-white/90 font-medium relative overflow-hidden bg-white/5 backdrop-blur-sm"
+                        className="inline-flex py-1.5 px-4 rounded-full text-white/90 font-medium relative overflow-hidden bg-[#171717] border border-white/10 group"
                         initial={{ y: -20, opacity: 0 }}
                         animate={{ y: 0, opacity: 1 }}
                         transition={{ delay: 0.2 }}
                     >
-                        {/* Shimmer effect overlay */}
-                        <span className="absolute inset-0 w-full h-full">
-                            <span className="absolute inset-0 -translate-x-full animate-[shimmer_2s_infinite] bg-gradient-to-r from-transparent via-white/20 to-transparent"></span>
-                        </span>
-                        <span className="mr-1.5">✨</span> Launching Soon
+                        {/* Using our custom shimmer effect class instead of Tailwind classes */}
+                        <div className="shimmer-effect"></div>
+                        <span className="relative z-10 mr-1.5">✨</span> 
+                        <span className="relative z-10">Launching Soon</span>
                     </motion.div>
                 </div>
 
