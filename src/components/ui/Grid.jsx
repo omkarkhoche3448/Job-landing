@@ -19,7 +19,7 @@ const Grid = () => {
             // Randomize which cells get enhanced glow effects
             const hasEnhancedGlow = Math.random() > 0.93; // Increased chance by another 20% (7% vs 6%)
             const glowIntensity = hasEnhancedGlow ? 
-                Math.random() * 0.0691 + 0.0518 : // Another 20% higher intensity (0.0518-0.1209 vs 0.0432-0.1008)
+                Math.random() * 0.0691 : // Another 20% higher intensity (0.0518-0.1209 vs 0.0432-0.1008)
                 Math.random() * 0.0151 + 0.0065; // Another 20% higher intensity (0.0065-0.0216 vs 0.0054-0.018)
             
             // Randomize animation timing to create organic feel
