@@ -92,7 +92,7 @@ const Footer = () => {
                     </p>
                 </div>
                 <div className="flex items-center justify-center gap-0">
-                    {["H", "a", "d", "j", "o", "b", "s"].map((item, index, arr) => {
+                    {["H", "a", "n", "d", "j", "o", "b", "s"].map((item, index, arr) => {
                         return (
                             <span
                                 key={`item-${index}`}
