@@ -2,7 +2,8 @@ import React, { useEffect, useState } from "react";
 import Button from "../components/Button";
 import { motion } from "framer-motion";
 import cursorImage from "../assets/images/cursor-you.svg";
-import { Search, Briefcase, Zap, Globe, CheckCircle } from "lucide-react";
+// Import new icons and remove unused ones
+import { Search, BriefcaseBusiness, Sparkles, Network, BadgeCheck } from "lucide-react";
 
 function Hero() {
     const [email, setEmail] = useState("");
@@ -151,35 +152,39 @@ function Hero() {
                     animate={{ opacity: 1 }}
                     transition={{ delay: 1 }}
                 >
+                    {/* Updated stat item styling with new icon */}
                     <motion.div
-                        className="flex items-center gap-2 bg-white/5 backdrop-blur-sm px-3 md:px-4 py-2 rounded-full border border-white/10"
-                        whileHover={{ scale: 1.05, borderColor: "rgba(163, 230, 53, 0.3)" }}
+                        className="flex items-center gap-2 bg-neutral-800/80 text-neutral-200 px-4 py-2 rounded-full border border-neutral-700/80 transition-colors duration-300"
+                        whileHover={{ borderColor: "#a3e635" /* lime-400 */ }}
                     >
-                        <Briefcase className="w-4 h-4 text-lime-400" />
+                        <BriefcaseBusiness className="w-4 h-4 text-lime-400 shrink-0" />
                         <span>10,000+ Jobs</span>
                     </motion.div>
 
+                    {/* Updated stat item styling with new icon */}
                     <motion.div
-                        className="flex items-center gap-2 bg-white/5 backdrop-blur-sm px-3 md:px-4 py-2 rounded-full border border-white/10"
-                        whileHover={{ scale: 1.05, borderColor: "rgba(163, 230, 53, 0.3)" }}
+                        className="flex items-center gap-2 bg-neutral-800/80 text-neutral-200 px-4 py-2 rounded-full border border-neutral-700/80 transition-colors duration-300"
+                        whileHover={{ borderColor: "#60a5fa" /* blue-400 */ }}
                     >
-                        <Globe className="w-4 h-4 text-blue-400" />
+                        <Network className="w-4 h-4 text-blue-400 shrink-0" />
                         <span>100+ Companies</span>
                     </motion.div>
 
+                    {/* Updated stat item styling with new icon */}
                     <motion.div
-                        className="flex items-center gap-2 bg-white/5 backdrop-blur-sm px-3 md:px-4 py-2 rounded-full border border-white/10"
-                        whileHover={{ scale: 1.05, borderColor: "rgba(163, 230, 53, 0.3)" }}
+                        className="flex items-center gap-2 bg-neutral-800/80 text-neutral-200 px-4 py-2 rounded-full border border-neutral-700/80 transition-colors duration-300"
+                        whileHover={{ borderColor: "#facc15" /* yellow-400 */ }}
                     >
-                        <Zap className="w-4 h-4 text-yellow-400" />
+                        <Sparkles className="w-4 h-4 text-yellow-400 shrink-0" />
                         <span>Instant Alerts</span>
                     </motion.div>
 
+                    {/* Updated stat item styling with new icon */}
                     <motion.div
-                        className="flex items-center gap-2 bg-white/5 backdrop-blur-sm px-3 md:px-4 py-2 rounded-full border border-white/10"
-                        whileHover={{ scale: 1.05, borderColor: "rgba(163, 230, 53, 0.3)" }}
+                        className="flex items-center gap-2 bg-neutral-800/80 text-neutral-200 px-4 py-2 rounded-full border border-neutral-700/80 transition-colors duration-300"
+                        whileHover={{ borderColor: "#4ade80" /* green-400 */ }}
                     >
-                        <CheckCircle className="w-4 h-4 text-green-400" />
+                        <BadgeCheck className="w-4 h-4 text-green-400 shrink-0" />
                         <span>Free Access</span>
                     </motion.div>
                 </motion.div>
