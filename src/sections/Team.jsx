@@ -27,7 +27,7 @@ const teamMembers = [
     {
         name: "Omkar Khoche",
         position: "UI/UX Design Intern @ WYSWYG Solutions",
-        photo: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=800&q=80",
+        photo: "https://res.cloudinary.com/dkbzscmmq/image/upload/v1746024548/y1og3bjseyrodjnauja9.png",
         bio: "Omkar designs smooth user flows and interfaces for AI tools at WYSWYG. Focused on clean visuals, accessibility, and fast iterations.",
         linkedin: "https://www.linkedin.com/in/omkarkhoche3448/",
         instagram: "https://www.instagram.com/omkar_khoche/",
