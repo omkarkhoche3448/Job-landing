@@ -19,26 +19,26 @@ const IntegrationColumn = (props) => {
                 repeat: Infinity,
                 ease: "linear",
             }}
-            className={twMerge("flex flex-col gap-4 pb-4", className)}
+            className={twMerge("flex flex-col gap-5 pb-4", className)}
         >
             {Array.from({ length: 2 }).map((_, i) => (
                 <Fragment key={i}>
                     {integrations.map((integration) => (
                         <div
                             key={integration.name}
-                            className="bg-neutral-900 border border-white/10 rounded-3xl p-6 "
+                            className="bg-neutral-900 border border-white/10 rounded-xl p-5"
                         >
                             <div className="flex justify-center">
                                 <img
-                                    className="size-24"
+                                    className="w-20 h-20"
                                     src={integration.icon}
                                     alt={`${integration.name}-icon`}
                                 />
                             </div>
-                            <h3 className="text-3xl text-center mt-6 ">
+                            <h3 className="text-xl text-center mt-4">
                                 {integration.name}
                             </h3>
-                            <p className="text-center text-white/50 mt-2 ">
+                            <p className="text-center text-white/50 mt-2 text-sm">
                                 {integration.description}
                             </p>
                         </div>

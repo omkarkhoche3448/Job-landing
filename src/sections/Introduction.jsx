@@ -7,8 +7,7 @@ import {
     useTransform,
 } from "framer-motion";
 import { twMerge } from "tailwind-merge";
-
-const text = `You're racing to create exceptional work, but traditional design tools slow you down with unnecessary complexity and steep learning curves.`;
+const text = `Job hunting shouldn’t be this hard. Handjobs brings all opportunities to one place — simple, fast, smart.`;
 const words = text.split(" ");
 
 function Introduction() {
@@ -34,15 +33,14 @@ function Introduction() {
     );
 
     return (
-        <section className="py-28 lg:py-40  ">
+        <section className="py-20 lg:py-48 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="container">
                 <div className="sticky top-28 md:top-32">
                     <div className="flex justify-center">
                         <Tag>Introduction Layers</Tag>
                     </div>
-                    <div className="text-4xl md:text-6xl lg:text-7xl text-center font-medium mt-10 ">
-                        <span>Your crative process deserves better.&nbsp;</span>
-                        <span className="text-white/15 ">
+                    <div className="text-4xl md:text-6xl lg:text-7xl text-center font-medium mt-12">
+                        <span className="text-white/15">
                             {words.map((word, wordIndex) => (
                                 <span
                                     key={wordIndex}
@@ -53,8 +51,8 @@ function Introduction() {
                                 >{`${word} `}</span>
                             ))}
                         </span>
-                        <span className="text-lime-400 block">
-                            That's why we built Layers.
+                        <span className="text-lime-400 block mt-4">
+                            That's why we built Handjobs.
                         </span>
                     </div>
                 </div>
