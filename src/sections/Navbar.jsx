@@ -3,6 +3,9 @@ import logoImage from "../assets/images/logo.svg";
 import { Menu, X } from "lucide-react";
 import Button from "../components/Button";
 import { AnimatePresence, motion } from "framer-motion";
+import { useLocation } from "react-router-dom";
+import ScrollToSection from "../components/ScrollToSection";
+import { Link } from "react-router-dom";
 
 const navLinks = [
     { label: "Home", href: "/" },
@@ -14,85 +17,67 @@ const navLinks = [
 
 function Navbar() {
     const [isOpen, setIsOpen] = useState(false);
-    const [activeSection, setActiveSection] = useState("/");
+    const [activeSection, setActiveSection] = useState("");
+    const location = useLocation();
 
+    // Update active section based on scroll position
     useEffect(() => {
-        const sections = navLinks
-            .map(link => link.href.startsWith("#") ? document.getElementById(link.href.substring(1)) : null)
-            .filter(section => section !== null);
+        const handleScroll = () => {
+            if (location.pathname !== "/") {
+                setActiveSection("");
+                return;
+            }
 
-        const observerOptions = {
-            root: null,
-            rootMargin: '-10% 0px -90% 0px',
-            threshold: 0
-        };
+            const sections = navLinks
+                .filter(link => link.href.startsWith("#"))
+                .map(link => link.href.replace("#", ""));
+                
+            const scrollPosition = window.scrollY + 100; // Offset for better detection
 
-        const observerCallback = (entries) => {
-            let currentActive;
-            if (window.scrollY < 50) {
-                currentActive = "/";
-            } else {
-                let highestIntersectingEntry = null;
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        if (!highestIntersectingEntry || entry.target.offsetTop < highestIntersectingEntry.target.offsetTop) {
-                            highestIntersectingEntry = entry;
-                        }
-                    }
-                });
-
-                if (highestIntersectingEntry) {
-                    currentActive = `#${highestIntersectingEntry.target.id}`;
+            for (const section of sections) {
+                const element = document.getElementById(section);
+                if (!element) continue;
+                
+                const offsetTop = element.offsetTop;
+                const offsetHeight = element.offsetHeight;
+                
+                if (scrollPosition >= offsetTop && scrollPosition < offsetTop + offsetHeight) {
+                    setActiveSection("#" + section);
+                    return;
                 }
             }
-            setActiveSection(prev => prev !== currentActive ? currentActive : prev);
+            
+            // If we're at the top of the page, set Home as active
+            if (scrollPosition < 300) {
+                setActiveSection("/");
+            }
         };
 
-        const observer = new IntersectionObserver(observerCallback, observerOptions);
+        // Set initial active section
+        if (location.pathname === "/") {
+            handleScroll();
+        } else {
+            setActiveSection("");
+        }
 
-        sections.forEach(section => {
-            if (section) {
-                observer.observe(section);
-            }
-        });
+        window.addEventListener("scroll", handleScroll);
+        return () => window.removeEventListener("scroll", handleScroll);
+    }, [location.pathname]);
 
-        let scrollTimeout;
-        const handleScroll = () => {
-            clearTimeout(scrollTimeout);
-            scrollTimeout = setTimeout(() => {
-                if (window.scrollY < 50) {
+    // Reset active section when route changes
+    useEffect(() => {
+        if (location.pathname !== "/") {
+            setActiveSection("");
+        } else {
+            // Small delay to ensure DOM is ready
+            setTimeout(() => {
+                const scrollPosition = window.scrollY + 100;
+                if (scrollPosition < 300) {
                     setActiveSection("/");
                 }
-            }, 50);
-        };
-        window.addEventListener('scroll', handleScroll, { passive: true });
-
-        return () => {
-            sections.forEach(section => {
-                if (section) {
-                    observer.unobserve(section);
-                }
-            });
-            window.removeEventListener('scroll', handleScroll);
-            clearTimeout(scrollTimeout);
-        };
-    }, []);
-
-    const handleSmoothScroll = (event, targetId) => {
-        event.preventDefault();
-        if (targetId === "/") {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-            setActiveSection("/");
-        } else {
-            const targetElement = document.getElementById(targetId.substring(1));
-            if (targetElement) {
-                targetElement.scrollIntoView({ behavior: 'smooth' });
-            }
+            }, 100);
         }
-        if (isOpen) {
-            setIsOpen(false);
-        }
-    };
+    }, [location.pathname]);
 
     return (
         <header className="fixed top-0 left-0 w-full z-50">
@@ -112,14 +97,23 @@ function Navbar() {
                             <div className="hidden lg:flex justify-center items-center">
                                 <nav className="flex gap-6 font-medium">
                                     {navLinks.map((each) => (
-                                        <a 
-                                            href={each.href} 
-                                            key={each.href}
-                                            onClick={(e) => handleSmoothScroll(e, each.href)}
-                                            className={`transition-colors duration-300 ${activeSection === each.href ? 'text-lime-400' : 'text-white hover:text-lime-300'}`}
-                                        >
-                                            {each.label}
-                                        </a>
+                                        each.href === "/" ? (
+                                            <Link 
+                                                to="/"
+                                                key={each.href}
+                                                className={`transition-colors duration-300 ${activeSection === each.href ? 'text-lime-400' : 'text-white hover:text-lime-300'}`}
+                                            >
+                                                {each.label}
+                                            </Link>
+                                        ) : (
+                                            <ScrollToSection 
+                                                to={each.href} 
+                                                key={each.href}
+                                                className={`transition-colors duration-300 ${activeSection === each.href ? 'text-lime-400' : 'text-white hover:text-lime-300'}`}
+                                            >
+                                                {each.label}
+                                            </ScrollToSection>
+                                        )
                                     ))}
                                 </nav>
                             </div>
@@ -183,15 +177,27 @@ function Navbar() {
                                 >
                                     <div className="flex flex-col items-center gap-4 py-4 border-t border-white/15 mt-2">
                                         {navLinks.map((link) => (
-                                            <a 
-                                                key={link.href} 
-                                                href={link.href}
-                                                onClick={(e) => handleSmoothScroll(e, link.href)}
-                                                className={`block w-full text-center py-2 transition-colors duration-300 ${activeSection === link.href ? 'text-lime-400' : 'text-white hover:text-lime-300'}`}
-                                            >
-                                                {link.label}
-                                            </a>
+                                            link.href === "/" ? (
+                                                <Link 
+                                                    key={link.href} 
+                                                    to="/"
+                                                    className={`block w-full text-center py-2 transition-colors duration-300 ${activeSection === link.href ? 'text-lime-400' : 'text-white hover:text-lime-300'}`}
+                                                    onClick={() => setIsOpen(false)}
+                                                >
+                                                    {link.label}
+                                                </Link>
+                                            ) : (
+                                                <ScrollToSection 
+                                                    key={link.href} 
+                                                    to={link.href}
+                                                    className={`block w-full text-center py-2 transition-colors duration-300 ${activeSection === link.href ? 'text-lime-400' : 'text-white hover:text-lime-300'}`}
+                                                    onClick={() => setIsOpen(false)}
+                                                >
+                                                    {link.label}
+                                                </ScrollToSection>
+                                            )
                                         ))}
+                                        
                                         <Button
                                             className="w-3/4 mt-2"
                                             variant="secondary"
