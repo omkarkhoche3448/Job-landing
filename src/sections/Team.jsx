@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Linkedin, X, Github } from "lucide-react"; 
 import Tag from "../components/Tag";
 
@@ -29,7 +29,7 @@ const teamMembers = [
     },
     {
         name: "Manthan Barhate",
-        position: "Data Science Intern @ SAS",
+        position: "Data Science EngineeringIntern @ SAS",
         photo: "https://avatars.githubusercontent.com/u/142141808?v=4",
         bio: "Manthan’s at SAS exploring ML models and real-world data analysis. Loves building visualizations and solving data-heavy problems.",
         linkedin: "https://www.linkedin.com/in/manthanbarhate/",
@@ -39,6 +39,31 @@ const teamMembers = [
 
 function Team() {
     const [selectedMember, setSelectedMember] = useState(null);
+
+    // Lock body scroll when modal is open
+    useEffect(() => {
+        if (selectedMember) {
+            const lenis = window.lenis;
+            if (lenis) {
+                lenis.stop();
+            }
+            document.body.style.overflow = 'hidden';
+        } else {
+            const lenis = window.lenis;
+            if (lenis) {
+                lenis.start();
+            }
+            document.body.style.overflow = '';
+        }
+
+        return () => {
+            const lenis = window.lenis;
+            if (lenis) {
+                lenis.start();
+            }
+            document.body.style.overflow = '';
+        };
+    }, [selectedMember]);
 
     return (
         <section id="team" className="py-16 relative overflow-hidden">
@@ -60,25 +85,25 @@ function Team() {
                     {teamMembers.map((member, idx) => (
                         <div
                             key={idx}
-                            className="group relative /50 backdrop-blur-sm rounded-xl overflow-hidden border border-white/10 hover:border-lime-400/30 transition-all duration-300"
+                            className="group relative backdrop-blur-sm rounded-xl overflow-hidden border border-white/10 hover:border-lime-400/30 transition-all duration-500 ease-in-out cursor-pointer"
                             onClick={() => setSelectedMember(member)}
                         >
                             <div className="aspect-[4/5] overflow-hidden">
                                 <img
                                     src={member.photo}
                                     alt={member.name}
-                                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                                    className="w-full h-full object-cover transition-transform duration-1000 ease-out group-hover:scale-110"
                                 />
                                 <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent"></div>
                             </div>
 
-                            <div className="absolute bottom-0 left-0 right-0 p-4">
+                            <div className="absolute -bottom-12 group-hover:bottom-0 transition-all duration-500 ease-in-out left-0 right-0 p-4">
                                 <h3 className="text-xl font-medium text-white group-hover:text-lime-400 transition-colors">
                                     {member.name}
                                 </h3>
                                 <p className="text-white/70 text-sm mt-1">{member.position}</p>
 
-                                <div className="flex space-x-3 mt-4 opacity-0 -translate-y-2 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300">
+                                <div className="flex space-x-3 mt-4 opacity-0 -translate-y-2 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-500 ease-out">
                                     {member.linkedin && (
                                         <a
                                             href={member.linkedin}
@@ -103,14 +128,14 @@ function Team() {
                     ))}
                 </div>
 
-                {/* Modal with proper content */}
+                {/* Modal */}
                 {selectedMember && (
                     <div
                         className="fixed inset-0 bg-black/90 backdrop-blur-sm z-50 flex items-center justify-center p-4"
                         onClick={() => setSelectedMember(null)}
                     >
                         <div
-                            className="/80 backdrop-blur-md border border-white/10 rounded-xl p-6 max-w-lg w-full relative"
+                            className="bg-neutral-900/80 backdrop-blur-md border border-white/10 rounded-xl p-6 max-w-lg w-full relative"
                             onClick={(e) => e.stopPropagation()}
                         >
                             <button
