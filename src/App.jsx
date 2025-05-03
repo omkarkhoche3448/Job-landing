@@ -20,7 +20,7 @@ import PrivacyPolicy from "./components/footer/PrivacyPolicy";
 import TermsAndConditions from "./components/footer/TermsAndConditions";
 import Refunds from "./components/footer/Refunds";
 import NotFound from "./components/NotFound";
-// import ScrollToTopButton from "./components/ScrollToTopButton";
+import ScrollToTopButton from "./components/ScrollToTopButton";
 // import ScrollProgressBar from "./components/ScrollProgressBar";
 // import SectionDots from "./components/SectionDots";
 // import PageLoader from "./components/PageLoader";
@@ -216,6 +216,7 @@ export default function Home() {
       <ScrollHandler />
       <AnimatedRoutes />
       <Footer />
+      <ScrollToTopButton />
     </Router>
   );
 }
