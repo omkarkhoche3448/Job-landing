@@ -8,7 +8,7 @@ const PolicyLayout = ({ title, children }) => {
     return (
         <div className="min-h-screen flex flex-col text-white">
             <main className="flex-grow">
-                <div className={`${location.pathname === '/contact' ? 'max-w-6xl' : 'max-w-3xl'} mx-auto px-4 py-8 sm:px-6 sm:py-12 mt-16`}>
+                <div className="max-w-6xl mx-auto px-4 py-8 sm:px-6 sm:py-12 mt-16">
                     <Link 
                         to="/" 
                         className="inline-flex items-center text-sm font-medium text-lime-400 hover:text-lime-600 mb-6"
@@ -19,7 +19,7 @@ const PolicyLayout = ({ title, children }) => {
                     
                     <h1 className="text-3xl sm:text-4xl font-bold text-white mb-8">{title}</h1>
                     
-                    <div className="prose prose-blue max-w-none text-white">
+                    <div className={`prose prose-blue max-w-none text-white ${location.pathname === '/contact' ? 'w-full' : 'max-w-4xl mx-auto'}`}>
                         {children}
                     </div>
                 </div>
