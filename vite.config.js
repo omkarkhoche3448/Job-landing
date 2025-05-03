@@ -8,6 +8,28 @@ export default defineConfig({
     allowedHosts: [
       'ea04-103-82-43-176.ngrok-free.app',
       '.ngrok-free.app' 
-    ]
+    ],
+    headers: {
+      'Cache-Control': 'no-store',
+    }
+  },
+  build: {
+    minify: 'terser',
+    terserOptions: {
+      compress: {
+        drop_console: true,
+      },
+    },
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          vendor: ['react', 'react-dom', 'react-router-dom', 'framer-motion'],
+          ui: ['tailwind-merge', 'lucide-react'],
+        },
+      },
+    },
+  },
+  optimizeDeps: {
+    include: ['react', 'react-dom', 'react-router-dom', 'framer-motion', 'tailwind-merge'],
   }
 })

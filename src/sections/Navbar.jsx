@@ -66,17 +66,40 @@ function Navbar() {
 
     // Reset active section when route changes
     useEffect(() => {
-        if (location.pathname !== "/") {
-            setActiveSection("");
-        } else {
-            // Small delay to ensure DOM is ready
-            setTimeout(() => {
-                const scrollPosition = window.scrollY + 100;
-                if (scrollPosition < 300) {
-                    setActiveSection("/");
+        const handleScroll = () => {
+            // This runs on every scroll event without debouncing
+            if (location.pathname !== "/") {
+                setActiveSection("");
+                return;
+            }
+
+            const sections = navLinks
+                .filter(link => link.href.startsWith("#"))
+                .map(link => link.href.replace("#", ""));
+                
+            const scrollPosition = window.scrollY + 100; // Offset for better detection
+
+            for (const section of sections) {
+                const element = document.getElementById(section);
+                if (!element) continue;
+                
+                const offsetTop = element.offsetTop;
+                const offsetHeight = element.offsetHeight;
+                
+                if (scrollPosition >= offsetTop && scrollPosition < offsetTop + offsetHeight) {
+                    setActiveSection("#" + section);
+                    return;
                 }
-            }, 100);
-        }
+            }
+            
+            // If we're at the top of the page, set Home as active
+            if (scrollPosition < 300) {
+                setActiveSection("/");
+            }
+        };
+
+        window.addEventListener("scroll", handleScroll);
+        return () => window.removeEventListener("scroll", handleScroll);
     }, [location.pathname]);
 
     return (

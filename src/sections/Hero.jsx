@@ -14,11 +14,11 @@ function Hero() {
         setEmail("");
     };
 
-    // Custom CSS for the flowing text effect
+    // Simplified CSS for the flowing text effect
     const flowingTextStyle = {
-        backgroundImage: 'linear-gradient(90deg, #4ade80, #22c55e, #34d399, #0ea5e9, #22c55e, #4ade80)',
-        backgroundSize: '300% 100%',
-        animation: 'flowingText 10s linear infinite',
+        backgroundImage: 'linear-gradient(90deg, #4ade80, #22c55e, #4ade80)',
+        backgroundSize: '200% 100%',
+        animation: 'flowingText 8s linear infinite',
         WebkitBackgroundClip: 'text',
         WebkitTextFillColor: 'transparent',
         backgroundClip: 'text',
@@ -34,28 +34,16 @@ function Hero() {
                 cursor: `url(${cursorImage}), auto`,
             }}
         >
-            {/* Custom CSS keyframes for the flowing text and shimmer effects */}
+            {/* Simplified CSS keyframes */}
             <style jsx="true">{`
                 @keyframes flowingText {
-                    0% { background-position: 300% 50%; }
-                    100% { background-position: 0% 50%; }
+                    0% { background-position: 0% 50%; }
+                    100% { background-position: 200% 50%; }
                 }
                 
                 @keyframes shimmerEffect {
-                     0%, 30% { transform: translateX(-100%); }
-                     50%, 80% { transform: translateX(100%); }
-                     80.01%, 100% { transform: translateX(-100%); }
-                }
-                
-                .shimmer-effect {
-                    position: absolute;
-                    top: 0;
-                    left: 0;
-                    width: 100%;
-                    height: 100%;
-                    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-                    transform: translateX(-100%);
-                    animation: shimmerEffect 4s linear infinite;
+                     0% { transform: translateX(-100%); }
+                     100% { transform: translateX(100%); }
                 }
             `}</style>
             
@@ -193,4 +181,4 @@ function Hero() {
     );
 }
 
-export default Hero;
+export default React.memo(Hero);
