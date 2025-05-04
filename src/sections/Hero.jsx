@@ -14,11 +14,11 @@ function Hero() {
         setEmail("");
     };
 
-    // Custom CSS for the flowing text effect
+    // Simplified CSS for the flowing text effect
     const flowingTextStyle = {
-        backgroundImage: 'linear-gradient(90deg, #4ade80, #22c55e, #34d399, #0ea5e9, #22c55e, #4ade80)',
-        backgroundSize: '300% 100%',
-        animation: 'flowingText 10s linear infinite',
+        backgroundImage: 'linear-gradient(90deg, #4ade80, #22c55e, #4ade80)',
+        backgroundSize: '200% 100%',
+        animation: 'flowingText 8s linear infinite',
         WebkitBackgroundClip: 'text',
         WebkitTextFillColor: 'transparent',
         backgroundClip: 'text',
@@ -34,7 +34,7 @@ function Hero() {
                 cursor: `url(${cursorImage}), auto`,
             }}
         >
-            {/* Custom CSS keyframes for the flowing text and shimmer effects */}
+            {/* Simplified CSS keyframes */}
             <style jsx="true">{`
                 @keyframes flowingText {
                     0% { background-position: 300% 50%; }
@@ -58,7 +58,7 @@ function Hero() {
                     animation: shimmerEffect 4s linear infinite;
                 }
             `}</style>
-            
+
             {/* Animated background shapes */}
             <div className="absolute inset-0 overflow-hidden pointer-events-none">
                 <motion.div
@@ -92,9 +92,8 @@ function Hero() {
                         animate={{ y: 0, opacity: 1 }}
                         transition={{ delay: 0.2 }}
                     >
-                        {/* Using our custom shimmer effect class instead of Tailwind classes */}
                         <div className="shimmer-effect"></div>
-                        <span className="relative z-10 mr-1.5">✨</span> 
+                        <span className="relative z-10 mr-1.5">✨</span>
                         <span className="relative z-10">Launching Soon</span>
                     </motion.div>
                 </div>
@@ -193,4 +192,4 @@ function Hero() {
     );
 }
 
-export default Hero;
+export default React.memo(Hero);

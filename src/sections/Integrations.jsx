@@ -71,7 +71,7 @@ function Integrations() {
                                 <IntegrationColumn
                                     integrations={secondColumn}
                                     className="hidden md:flex"
-                                    reverse
+                                    reverse={true} 
                                 />
                             </div>
                         </div>

@@ -1,11 +1,10 @@
 import React from "react";
-import { motion } from "framer-motion";
 import Tag from "../components/Tag";
-import { Zap, Shield, Clock, Search, Filter, Bell, FileText, Brain, BookmarkCheck } from "lucide-react";
+import { Search, Filter, Bell, FileText, Brain, BookmarkCheck } from "lucide-react";
 
 function FeatureHighlight({ title, description, icon }) {
     return (
-        <motion.div
+        <div
             className="bg-neutral-900 border border-white/10 rounded-2xl p-5 hover:border-lime-400/30 transition-all duration-300 w-full"
             whileHover={{ y: -5 }}
             initial={{ opacity: 0, y: 20 }}
@@ -22,7 +21,7 @@ function FeatureHighlight({ title, description, icon }) {
                 <h3 className="text-lg font-medium">{title}</h3>
             </div>
             <p className="text-white/50 text-sm leading-relaxed">{description}</p>
-        </motion.div>
+        </div>
     );
 }
 
@@ -65,7 +64,7 @@ export function FeatureHighlights() {
             <div className="flex justify-center">
                 <Tag>Features</Tag>
             </div>
-            
+
             <div className="text-center mt-4 mb-12">
                 <h2 className="text-4xl lg:text-5xl font-medium max-w-2xl mx-auto leading-tight">
                     Everything you need to{" "}
