@@ -128,7 +128,7 @@ function Navbar() {
                                             <Link
                                                 to="/"
                                                 key={each.href}
-                                                onClick={scrollToTop} // Add scrollToTop function here
+                                                onClick={scrollToTop}
                                                 className={`transition-colors duration-300 ${activeSection === each.href ? 'text-lime-400' : 'text-white hover:text-lime-300'}`}
                                             >
                                                 {each.label}
@@ -227,17 +227,18 @@ function Navbar() {
                                         ))}
 
                                         <Button
-                                            className="w-3/4 mt-2 cursor-pointer"
+                                            className="w-fit mt-2 cursor-pointer"
                                             variant="secondary"
+                                            onClick={() => setIsOpen(false)}
                                         >
                                             Log In
                                         </Button>
                                         <Button
-                                            className="w-full py-2 text-left hover:text-white transition-colors cursor-pointer"
+                                            variant="primary"
+                                            size="sm"
+                                            className="w-fit mt-2 cursor-pointer"
+                                            onClick={() => setIsOpen(false)}
                                         >
-                                            Login
-                                        </Button>
-                                        <Button variant="primary" size="sm" className="w-full cursor-pointer">
                                             Sign Up
                                         </Button>
                                     </div>
@@ -247,7 +248,7 @@ function Navbar() {
                     </div>
                 </div>
             </section>
-        </header >
+        </header>
     );
 }
 
