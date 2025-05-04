@@ -8,43 +8,23 @@ const IntegrationColumn = (props) => {
     const columnRef = useRef(null);
     
     useEffect(() => {
-        // Only animate when the component is in viewport
-        const observer = new IntersectionObserver(
-            (entries) => {
-                if (entries[0].isIntersecting) {
-                    // Start animation when visible
-                    controls.start({
-                        y: reverse ? 0 : "-50%",
-                        transition: {
-                            duration: 20,
-                            ease: "linear",
-                            repeat: Infinity,
-                        }
-                    });
-                } else {
-                    // Pause animation when not visible
-                    controls.stop();
-                }
-            },
-            { threshold: 0.1 }
-        );
-        
-        if (columnRef.current) {
-            observer.observe(columnRef.current);
-        }
-        
-        return () => {
-            if (columnRef.current) {
-                observer.unobserve(columnRef.current);
+        // Start animation immediately for infinite loop
+        controls.start({
+            y: reverse ? ["0%", "-50%"] : ["-50%", "0%"],
+            transition: {
+                duration: 20,
+                ease: "linear",
+                repeat: Infinity,
+                repeatType: "reverse", 
             }
-        };
+        });
     }, [controls, reverse]);
 
     return (
         <motion.div
             ref={columnRef}
             initial={{
-                y: reverse ? "-50%" : 0,
+                y: reverse ? "0%" : "-50%",
             }}
             animate={controls}
             className={twMerge("flex flex-col gap-5 pb-4 will-change-transform", className)}
