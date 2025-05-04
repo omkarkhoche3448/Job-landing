@@ -31,22 +31,22 @@ function Navbar() {
             const sections = navLinks
                 .filter(link => link.href.startsWith("#"))
                 .map(link => link.href.replace("#", ""));
-                
+
             const scrollPosition = window.scrollY + 100; // Offset for better detection
 
             for (const section of sections) {
                 const element = document.getElementById(section);
                 if (!element) continue;
-                
+
                 const offsetTop = element.offsetTop;
                 const offsetHeight = element.offsetHeight;
-                
+
                 if (scrollPosition >= offsetTop && scrollPosition < offsetTop + offsetHeight) {
                     setActiveSection("#" + section);
                     return;
                 }
             }
-            
+
             // If we're at the top of the page, set Home as active
             if (scrollPosition < 300) {
                 setActiveSection("/");
@@ -76,22 +76,22 @@ function Navbar() {
             const sections = navLinks
                 .filter(link => link.href.startsWith("#"))
                 .map(link => link.href.replace("#", ""));
-                
+
             const scrollPosition = window.scrollY + 100; // Offset for better detection
 
             for (const section of sections) {
                 const element = document.getElementById(section);
                 if (!element) continue;
-                
+
                 const offsetTop = element.offsetTop;
                 const offsetHeight = element.offsetHeight;
-                
+
                 if (scrollPosition >= offsetTop && scrollPosition < offsetTop + offsetHeight) {
                     setActiveSection("#" + section);
                     return;
                 }
             }
-            
+
             // If we're at the top of the page, set Home as active
             if (scrollPosition < 300) {
                 setActiveSection("/");
@@ -102,6 +102,10 @@ function Navbar() {
         return () => window.removeEventListener("scroll", handleScroll);
     }, [location.pathname]);
 
+    const scrollToTop = () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    };
+
     return (
         <header className="fixed top-0 left-0 w-full z-50">
             <div className="absolute inset-0 bg-gradient-to-b from-lime-400/10 via-transparent to-transparent"></div>
@@ -110,7 +114,7 @@ function Navbar() {
                 <div className="container max-w-5xl mx-auto">
                     <div className="border border-white/15 rounded-[27px] lg:rounded-full bg-neutral-950/70 backdrop-blur">
                         <figure className="grid grid-cols-2 lg:grid-cols-3 py-2 lg:px-2 px-4 items-center">
-                            <NavLink to={"/"}>
+                            <NavLink to={"/"} onClick={scrollToTop}>
                                 <img
                                     src={logoImage}
                                     alt="layer logo"
@@ -121,16 +125,17 @@ function Navbar() {
                                 <nav className="flex gap-6 font-medium">
                                     {navLinks.map((each) => (
                                         each.href === "/" ? (
-                                            <Link 
+                                            <Link
                                                 to="/"
                                                 key={each.href}
+                                                onClick={scrollToTop} // Add scrollToTop function here
                                                 className={`transition-colors duration-300 ${activeSection === each.href ? 'text-lime-400' : 'text-white hover:text-lime-300'}`}
                                             >
                                                 {each.label}
                                             </Link>
                                         ) : (
-                                            <ScrollToSection 
-                                                to={each.href} 
+                                            <ScrollToSection
+                                                to={each.href}
                                                 key={each.href}
                                                 className={`transition-colors duration-300 ${activeSection === each.href ? 'text-lime-400' : 'text-white hover:text-lime-300'}`}
                                             >
@@ -176,13 +181,13 @@ function Navbar() {
                                 </button>
                                 <Button
                                     variant="secondary"
-                                    className="hidden lg:inline-flex items-center"
+                                    className="hidden lg:inline-flex items-center cursor-pointer"
                                 >
                                     Login
                                 </Button>
                                 <Button
                                     variant="primary"
-                                    className="hidden lg:inline-flex items-center"
+                                    className="hidden lg:inline-flex items-center cursor-pointer"
                                 >
                                     Signup
                                 </Button>
@@ -201,8 +206,8 @@ function Navbar() {
                                     <div className="flex flex-col items-center gap-4 py-4 border-t border-white/15 mt-2">
                                         {navLinks.map((link) => (
                                             link.href === "/" ? (
-                                                <Link 
-                                                    key={link.href} 
+                                                <Link
+                                                    key={link.href}
                                                     to="/"
                                                     className={`block w-full text-center py-2 transition-colors duration-300 ${activeSection === link.href ? 'text-lime-400' : 'text-white hover:text-lime-300'}`}
                                                     onClick={() => setIsOpen(false)}
@@ -210,8 +215,8 @@ function Navbar() {
                                                     {link.label}
                                                 </Link>
                                             ) : (
-                                                <ScrollToSection 
-                                                    key={link.href} 
+                                                <ScrollToSection
+                                                    key={link.href}
                                                     to={link.href}
                                                     className={`block w-full text-center py-2 transition-colors duration-300 ${activeSection === link.href ? 'text-lime-400' : 'text-white hover:text-lime-300'}`}
                                                     onClick={() => setIsOpen(false)}
@@ -220,17 +225,19 @@ function Navbar() {
                                                 </ScrollToSection>
                                             )
                                         ))}
-                                        
+
                                         <Button
-                                            className="w-3/4 mt-2"
+                                            className="w-3/4 mt-2 cursor-pointer"
                                             variant="secondary"
                                         >
                                             Log In
                                         </Button>
                                         <Button
-                                            className="w-3/4"
-                                            variant="primary"
+                                            className="w-full py-2 text-left hover:text-white transition-colors cursor-pointer"
                                         >
+                                            Login
+                                        </Button>
+                                        <Button variant="primary" size="sm" className="w-full cursor-pointer">
                                             Sign Up
                                         </Button>
                                     </div>
@@ -240,7 +247,7 @@ function Navbar() {
                     </div>
                 </div>
             </section>
-        </header>
+        </header >
     );
 }
 
