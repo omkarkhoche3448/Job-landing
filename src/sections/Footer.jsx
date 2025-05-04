@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
 import { companyInfo, footerLinks, socialLinks } from "../components/footer/data/footerSectionData";
 import siteLogo from "../assets/images/logo.svg";
 
@@ -42,13 +42,13 @@ const Footer = () => {
                 <div className="grid gap-10 md:grid-cols-3">
                     {/* Logo & About Section */}
                     <div className="space-y-8">
-                        <div className="flex items-center">
+                        <NavLink to={"/"} className="flex items-center">
                             <img
                                 src={siteLogo}
                                 alt={companyInfo.name}
                                 className="h-12 sm:h-16"
                             />
-                        </div>
+                        </NavLink>
                         <p className="text-white/70 text-sm sm:text-base leading-relaxed max-w-md">
                             {companyInfo.slogan}
                             <br className="hidden sm:block" />
@@ -103,7 +103,7 @@ const Footer = () => {
                         ))}
                     </div>
                 </div>
-                
+
                 {/* Copyright Section */}
                 <div className="border-t border-white/20 mt-16 pt-8">
                     <p className="text-sm sm:text-base text-white/60 text-start">
@@ -111,7 +111,7 @@ const Footer = () => {
                         rights reserved.
                     </p>
                 </div>
-                
+
                 {/* Brand Name */}
                 <div className="flex items-center justify-center gap-0 mt-12 mb-4 overflow-hidden w-full">
                     {["H", "a", "n", "d", "j", "o", "b", "s"].map((item, index, arr) => {

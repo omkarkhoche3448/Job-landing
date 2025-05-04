@@ -3,7 +3,7 @@ import logoImage from "../assets/images/logo.svg";
 import { Menu, X } from "lucide-react";
 import Button from "../components/Button";
 import { AnimatePresence, motion } from "framer-motion";
-import { useLocation } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 import ScrollToSection from "../components/ScrollToSection";
 import { Link } from "react-router-dom";
 
@@ -110,13 +110,13 @@ function Navbar() {
                 <div className="container max-w-5xl mx-auto">
                     <div className="border border-white/15 rounded-[27px] lg:rounded-full bg-neutral-950/70 backdrop-blur">
                         <figure className="grid grid-cols-2 lg:grid-cols-3 py-2 lg:px-2 px-4 items-center">
-                            <div>
+                            <NavLink to={"/"}>
                                 <img
                                     src={logoImage}
                                     alt="layer logo"
                                     className="h-9 w-auto md:h-auto"
                                 />
-                            </div>
+                            </NavLink>
                             <div className="hidden lg:flex justify-center items-center">
                                 <nav className="flex gap-6 font-medium">
                                     {navLinks.map((each) => (

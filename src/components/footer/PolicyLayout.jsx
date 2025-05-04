@@ -8,7 +8,7 @@ const PolicyLayout = ({ title, children }) => {
     return (
         <div className="min-h-screen flex flex-col text-white">
             <main className="flex-grow">
-                <div className="max-w-6xl mx-auto px-4 py-8 sm:px-6 sm:py-12 mt-16">
+                <div className="container max-w-5xl mx-auto px-4 py-8 sm:px-6 sm:py-12 mt-16">
                     <Link 
                         to="/" 
                         className="inline-flex items-center text-sm font-medium text-lime-400 hover:text-lime-600 mb-6"
