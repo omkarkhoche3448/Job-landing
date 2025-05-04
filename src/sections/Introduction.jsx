@@ -6,7 +6,7 @@ import {
     useScroll,
 } from "framer-motion";
 import { twMerge } from "tailwind-merge";
-const text = `Job hunting shouldn't be this hard. Handjobs brings all opportunities to one place — simple, fast, smart.`;
+const text = `Job hunting shouldn't be this hard. Handjobs brings all opportunities to one place simple, fast, smart.`;
 const words = text.split(" ");
 
 function Introduction() {
