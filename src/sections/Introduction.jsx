@@ -13,7 +13,7 @@ const words = text.split(" ");
 function Introduction() {
     const sectionRef = useRef(null);
     const scrollTarget = useRef(null);
-    const [currentWord, setCurrentWord] = useState(0);
+    const [currentWord, setCurrentWord] = useState(-1); 
     const [isComplete, setIsComplete] = useState(false);
     const isInView = useInView(sectionRef, { amount: 0.3, once: false });
 
@@ -32,8 +32,12 @@ function Introduction() {
             // Calculate the new index based on scroll direction
             const newIndex = Math.min(Math.floor(latest), words.length - 1);
             
-            // Update current word index
-            setCurrentWord(newIndex);
+            // Only start highlighting when we've scrolled enough
+            if (latest > 0.05) {
+                setCurrentWord(newIndex);
+            } else {
+                setCurrentWord(-1); 
+            }
             
             // Update completion state based on direction
             if (newIndex >= words.length - 1) {
@@ -63,7 +67,7 @@ function Introduction() {
                                     key={idx}
                                     className={twMerge(
                                         "transition duration-500 text-white/15",
-                                        idx <= currentWord && "text-white"
+                                        idx <= currentWord && currentWord >= 0 && "text-white"
                                     )}
                                 >{`${word} `}</span>
                             ))}
