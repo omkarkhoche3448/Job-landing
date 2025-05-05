@@ -37,23 +37,23 @@ const pricingPlans = [
         ],
         recommended: true
     },
-    {
-        name: "Enterprise",
-        price: "Custom",
-        period: "",
-        description: "For teams and organizations",
-        buttonText: "Contact Sales",
-        buttonVariant: "outline",
-        features: [
-            "Everything in Pro",
-            "API access",
-            "Custom integrations",
-            "Dedicated account manager",
-            "Advanced analytics",
-            "White-label options"
-        ],
-        recommended: false
-    }
+    // {
+    //     name: "Enterprise",
+    //     price: "Custom",
+    //     period: "",
+    //     description: "For teams and organizations",
+    //     buttonText: "Contact Sales",
+    //     buttonVariant: "outline",
+    //     features: [
+    //         "Everything in Pro",
+    //         "API access",
+    //         "Custom integrations",
+    //         "Dedicated account manager",
+    //         "Advanced analytics",
+    //         "White-label options"
+    //     ],
+    //     recommended: false
+    // }
 ];
 
 const cardVariants = {
@@ -67,7 +67,7 @@ const cardVariants = {
 
 function Pricing() {
     return (
-        <section id="pricing"  className="py-16 relative overflow-hidden">
+        <section id="pricing" className="py-16 relative overflow-hidden">
             {/* Background gradient */}
             <div className="absolute inset-0 bg-gradient-to-b from-transparent via-lime-400/5 to-transparent"></div>
 
@@ -82,11 +82,11 @@ function Pricing() {
                     Start for free, upgrade when you need more features
                 </p>
 
-                <div className="mt-10 grid grid-cols-1 md:grid-cols-3 gap-5">
+                <div className="mt-10 flex flex-col md:flex-row justify-center gap-8 max-w-4xl mx-auto">
                     {pricingPlans.map((plan, index) => (
                         <div
                             key={index}
-                            className={`bg-neutral-900 border ${plan.recommended ? 'border-lime-400/50' : 'border-white/10'} rounded-xl p-6 hover:border-lime-400/30 transition-all duration-300 relative`}
+                            className={`bg-neutral-900/50 backdrop-blur-sm border ${plan.recommended ? 'border-lime-400/50' : 'border-white/10'} rounded-2xl p-8 hover:border-lime-400/30 transition-all duration-300 relative md:w-[340px] w-full`}
                             variants={cardVariants}
                             initial="hidden"
                             whileInView="visible"
@@ -94,32 +94,34 @@ function Pricing() {
                             whileHover={{ y: -5 }}
                         >
                             {plan.recommended && (
-                                <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-lime-400 text-neutral-900 px-4 py-1 rounded-full text-sm font-medium">
+                                <div className="absolute -top-3 left-1/2 transform -translate-x-1/2 bg-lime-400 text-neutral-900 px-6 py-1 rounded-full text-sm font-medium">
                                     Recommended
                                 </div>
                             )}
                             <div className="flex flex-col h-full">
-                                <h3 className="text-2xl font-medium mb-2">{plan.name}</h3>
-                                <div className="flex items-end mb-1">
-                                    <span className="text-4xl font-bold">{plan.price}</span>
-                                    <span className="text-white/50 ml-1">{plan.period}</span>
+                                <div className="h-[160px]">
+                                    <h3 className="text-3xl font-semibold mb-4">{plan.name}</h3>
+                                    <div className="flex items-baseline mb-2">
+                                        <span className="text-5xl font-bold tracking-tight">₹{plan.price.replace('₹', '')}</span>
+                                        <span className="text-white/50 ml-2 text-lg">{plan.period}</span>
+                                    </div>
+                                    <p className="text-lime-400 text-lg mb-2">{plan.description}</p>
+                                    {plan.subDescription && (
+                                        <p className="text-white/50 text-base">{plan.subDescription}</p>
+                                    )}
                                 </div>
-                                <p className="text-lime-400 mb-1">{plan.description}</p>
-                                {plan.subDescription && (
-                                    <p className="text-white/50 text-sm mb-6">{plan.subDescription}</p>
-                                )}
-                                
+
                                 <div className="mt-6 mb-8">
-                                    <Button variant={plan.buttonVariant} className="w-full">
+                                    <Button variant={plan.buttonVariant} className="w-full py-3 text-lg font-medium">
                                         {plan.buttonText}
                                     </Button>
                                 </div>
-                                
-                                <div className="space-y-3 mt-auto">
+
+                                <div className="space-y-4">
                                     {plan.features.map((feature, featureIndex) => (
                                         <div key={featureIndex} className="flex items-start">
-                                            <Check size={18} className="text-lime-400 mr-2 flex-shrink-0 mt-1" />
-                                            <span className="text-white/70">{feature}</span>
+                                            <Check size={20} className="text-lime-400 mr-3 flex-shrink-0 mt-0.5" />
+                                            <span className="text-white/80 text-base">{feature}</span>
                                         </div>
                                     ))}
                                 </div>
@@ -127,7 +129,7 @@ function Pricing() {
                         </div>
                     ))}
                 </div>
-                
+
                 <div className="text-center mt-8 text-white/50 text-sm">
                     Have questions? Check our <a href="#faqs" className="text-lime-400 hover:underline">FAQ</a> or <a href="/contact" className="text-lime-400 hover:underline">contact us</a>
                 </div>
