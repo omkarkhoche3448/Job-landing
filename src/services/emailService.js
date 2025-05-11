@@ -1,4 +1,4 @@
-const GOOGLE_SHEETS_API_ENDPOINT = process.env.REACT_APP_GOOGLE_SHEETS_API_ENDPOINT;
+const GOOGLE_SHEETS_API_ENDPOINT = import.meta.env.VITE_GOOGLE_SHEETS_API_ENDPOINT;
 
 /**
  * Submits an email to the Google Sheet using a direct form submission
