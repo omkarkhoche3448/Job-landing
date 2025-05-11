@@ -10,15 +10,15 @@ export const companyInfo = {
   copyright: "Handjobs Job Aggregator",
   headquarters: {
     name: "Handjobs Headquarters",
-    address: "123 Business Street",
-    city: "Tech City",
-    pincode: "400001",
+    address: "Sector No. 27, Akurdi",
+    city: "Pimpri-Chinchwad",
+    pincode: "411035",
     country: "India"
-  },
+  },  
   contact: {
     support: {
-      email: "support@Handjobs .com",
-      phone: "+91 1234567890"
+      email: "teamhandjobs.co.in@gmail.com",
+      phone: "+91 83290 03719"
     },
     business: {
       email: "business@Handjobs .com"

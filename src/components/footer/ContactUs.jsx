@@ -50,7 +50,7 @@ const ContactUs = () => {
               <div>
                 <h3 className="text-lg font-medium text-white">Email Us</h3>
                 <p className="text-white/70">{companyInfo.contact.support.email}</p>
-                <p className="text-white/70">For business inquiries: {companyInfo.contact.business.email}</p>
+                {/* <p className="text-white/70">For business inquiries: {companyInfo.contact.business.email}</p> */}
               </div>
             </div>
 
