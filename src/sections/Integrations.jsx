@@ -34,7 +34,6 @@ function Integrations() {
     const containerRef = useRef(null);
     const isInView = useInView(containerRef, { once: true, amount: 0.2 });
 
-    // Split integrations into two columns for display
     const firstColumn = integrations.slice(0, 2);
     const secondColumn = integrations.slice(2);
 
@@ -45,7 +44,6 @@ function Integrations() {
                 animate={isInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.5 }}
             >
-                {/* Background gradient */}
                 <div className="absolute inset-0 bg-gradient-to-b from-transparent via-lime-400/5 to-transparent"></div>
 
                 <div className="container max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative">
@@ -64,13 +62,12 @@ function Integrations() {
                             </p>
                         </div>
                         <div>
-                            <div className="grid md:grid-cols-2 gap-5 lg:h-[600px] h-[400px] lg:mt-0 mt-8 overflow-hidden [mask-image:linear-gradient(to_bottom,transparent,black_10%,black_90%,transparent)]">
+                            <div className="grid grid-cols-2 gap-3 lg:gap-5 lg:h-[600px] h-[400px] lg:mt-0 mt-8 overflow-hidden [mask-image:linear-gradient(to_bottom,transparent,black_10%,black_90%,transparent)]">
                                 <IntegrationColumn 
                                     integrations={firstColumn} 
                                 />
                                 <IntegrationColumn
                                     integrations={secondColumn}
-                                    className="hidden md:flex"
                                     reverse={true} 
                                 />
                             </div>

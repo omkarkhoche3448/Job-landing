@@ -136,12 +136,13 @@ function Hero() {
                     />
                     <Button
                         size="sm"
-                        className="whitespace-nowrap gap-2 group"
+                        className="whitespace-nowrap gap-2 group cursor-pointer text-sm px-3 py-1.5 md:text-base md:px-3 md:py-2"
                         type="submit"
                         variant="primary"
                     >
                         I’m Interested
                     </Button>
+
                 </motion.form>
 
                 {/* Stats section with improved visuals */}
