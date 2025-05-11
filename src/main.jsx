@@ -1,16 +1,23 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
-import App from "./App.jsx";
-import MainLayout from "./MainLayout.jsx";
+import App from "./App";
+import MainLayout from "./MainLayout";
 import "./index.css";
 
+// Disable native scroll restoration
 if (history.scrollRestoration) {
-  history.scrollRestoration = 'manual';
+    history.scrollRestoration = 'manual';
 }
 
-window.onload = function() {
-  window.scrollTo(0, 0);
-}
+// Reset scroll position on page load
+window.addEventListener('load', () => {
+    const lenis = window.lenis;
+    if (lenis) {
+        lenis.scrollTo(0, { immediate: true });
+    } else {
+        window.scrollTo(0, 0);
+    }
+});
 
 createRoot(document.getElementById("root")).render(
     <StrictMode>
