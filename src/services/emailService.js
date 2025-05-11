@@ -1,5 +1,10 @@
+// 1. Make sure your environment variable is properly defined in your .env file
+// Example .env file should have: VITE_GOOGLE_SHEETS_API_ENDPOINT=https://your-actual-endpoint-url
+
+// 2. Ensure you're accessing the environment variable correctly
 const GOOGLE_SHEETS_API_ENDPOINT = import.meta.env.VITE_GOOGLE_SHEETS_API_ENDPOINT;
 
+// 3. Add a fallback or check to prevent undefined URLs
 /**
  * Submits an email to the Google Sheet using a direct form submission
  * @param {string} email - The email to submit
@@ -8,6 +13,16 @@ const GOOGLE_SHEETS_API_ENDPOINT = import.meta.env.VITE_GOOGLE_SHEETS_API_ENDPOI
 export const submitEmailToSheet = async (email) => {
     return new Promise((resolve) => {
         try {
+            // Check if the endpoint is defined
+            if (!GOOGLE_SHEETS_API_ENDPOINT) {
+                console.error('Google Sheets API endpoint is not defined in environment variables');
+                resolve({
+                    success: false,
+                    message: 'Configuration error. Please contact support.'
+                });
+                return;
+            }
+
             // Unique form ID
             const formId = 'google-sheet-form-' + Date.now();
             const iframeName = 'hidden_iframe_' + Date.now();
@@ -32,6 +47,16 @@ export const submitEmailToSheet = async (email) => {
             document.body.appendChild(formContainer);
 
             const form = document.getElementById(formId);
+
+            // Add error handling for iframe load failures
+            iframe.onerror = () => {
+                document.body.removeChild(iframe);
+                document.body.removeChild(formContainer);
+                resolve({
+                    success: false,
+                    message: 'Unable to connect to server. Please try again later.'
+                });
+            };
 
             // Listen for iframe load to assume submission complete
             iframe.onload = () => {
