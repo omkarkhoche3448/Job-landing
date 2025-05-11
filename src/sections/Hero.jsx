@@ -1,17 +1,53 @@
 import React, { useEffect, useState } from "react";
 import Button from "../components/Button";
 import { motion } from "framer-motion";
+import { submitEmailToSheet } from "../services/emailService";
 import cursorImage from "../assets/images/cursor-you.svg";
-// Import new icons and remove unused ones
 import { Search, BriefcaseBusiness, Sparkles, Network, BadgeCheck } from "lucide-react";
 
 function Hero() {
     const [email, setEmail] = useState("");
+    const [submitStatus, setSubmitStatus] = useState({ message: '', type: '' });
+    const [isSubmitting, setIsSubmitting] = useState(false);
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log("Email submitted:", email);
-        setEmail("");
+        setIsSubmitting(true);
+        
+        try {
+            const result = await submitEmailToSheet(email);
+            
+            if (result.success) {
+                setSubmitStatus({ 
+                    message: result.message, 
+                    type: 'success' 
+                });
+                setEmail('');
+            } else {
+                setSubmitStatus({ 
+                    message: result.message, 
+                    type: 'error' 
+                });
+            }
+
+            // Set a timeout to clear the message after 4 seconds
+            setTimeout(() => {
+                setSubmitStatus({ message: '', type: '' });
+            }, 4000);
+
+        } catch (error) {
+            setSubmitStatus({ 
+                message: 'Something went wrong. Please try again later.', 
+                type: 'error' 
+            });
+
+            // Set a timeout to clear the message after 4 seconds
+            setTimeout(() => {
+                setSubmitStatus({ message: '', type: '' });
+            }, 4000);
+        } finally {
+            setIsSubmitting(false);
+        }
     };
 
     // Simplified CSS for the flowing text effect
@@ -117,32 +153,48 @@ function Hero() {
                 </motion.p>
 
                 <motion.form
-                    className="mx-auto flex border border-white/20 rounded-full p-2 mt-8 md:mt-10 max-w-lg bg-white/5 backdrop-blur-sm shadow-xl hover:border-lime-400/30 transition-all duration-300"
+                    className="mx-auto flex flex-col gap-2 w-full max-w-lg mt-8 md:mt-10"
                     initial={{ y: 20, opacity: 0 }}
                     animate={{ y: 0, opacity: 1 }}
                     transition={{ delay: 0.8 }}
                     onSubmit={handleSubmit}
                 >
-                    <div className="flex items-center px-3 text-white/40">
-                        <Search size={18} />
+                    <div className="flex border border-white/20 rounded-full p-2 bg-white/5 backdrop-blur-sm shadow-xl hover:border-lime-400/30 transition-all duration-300">
+                        <div className="flex items-center px-3 text-white/40">
+                            <Search size={18} />
+                        </div>
+                        <input
+                            type="email"
+                            placeholder="Enter your email for early access"
+                            className="bg-transparent px-2 flex-1 w-full focus:outline-none text-white selection:bg-white/10"
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
+                            required
+                            disabled={isSubmitting}
+                        />
+                        <Button
+                            size="sm"
+                            className="whitespace-nowrap gap-2 group cursor-pointer text-sm px-3 py-1.5 md:text-base md:px-3 md:py-2"
+                            type="submit"
+                            variant="primary"
+                            disabled={isSubmitting}
+                        >
+                            {isSubmitting ? 'Submitting...' : 'I\'m Interested'}
+                        </Button>
                     </div>
-                    <input
-                        type="email"
-                        placeholder="Enter your email for early access"
-                        className="bg-transparent px-2 flex-1 w-full focus:outline-none text-white selection:bg-white/10"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                        required
-                    />
-                    <Button
-                        size="sm"
-                        className="whitespace-nowrap gap-2 group cursor-pointer text-sm px-3 py-1.5 md:text-base md:px-3 md:py-2"
-                        type="submit"
-                        variant="primary"
-                    >
-                        I’m Interested
-                    </Button>
-
+                    {submitStatus.message && (
+                        <motion.div
+                            initial={{ opacity: 0, y: -10 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            className={`text-center text-sm ${
+                                submitStatus.type === 'success' 
+                                    ? 'text-lime-400' 
+                                    : 'text-red-400'
+                            }`}
+                        >
+                            {submitStatus.message}
+                        </motion.div>
+                    )}
                 </motion.form>
 
                 {/* Stats section with improved visuals */}
