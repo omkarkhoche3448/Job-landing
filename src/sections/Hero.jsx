@@ -140,7 +140,7 @@ function Hero() {
                         type="submit"
                         variant="primary"
                     >
-                        Sign Up
+                        I’m Interested
                     </Button>
                 </motion.form>
 
