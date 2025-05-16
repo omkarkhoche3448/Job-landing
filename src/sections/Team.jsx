@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Linkedin, X, Github } from "lucide-react"; 
+import { Linkedin, X, Github } from "lucide-react";
 import Tag from "../components/Tag";
 
 const teamMembers = [
@@ -13,19 +13,19 @@ const teamMembers = [
     },
     {
         name: "Soham Mhatre",
-        position: "Product Management Intern @ WYSWYG Solutions",
+        position: "AI/ML Intern @ WYSWYG Solutions",
         photo: "https://avatars.githubusercontent.com/u/150317894?v=4",
-        bio: "At WYSWYG, Soham handles product planning for AI and low-code tools. He’s great at turning feedback into fast feature updates.",
+        bio: "Soham works on backend, authentication, and integrations for AI and low-code tools at WYSWYG. Skilled at building robust systems and connecting platforms seamlessly.",
         linkedin: "https://www.linkedin.com/in/mhatresoham/",
         github: "https://github.com/SohamMhatre09"
     },
     {
-        name: "Omkar Khoche",
-        position: "UI/UX Design Intern @ WYSWYG Solutions",
-        photo: "https://res.cloudinary.com/dkbzscmmq/image/upload/v1746024548/y1og3bjseyrodjnauja9.png",
-        bio: "Omkar designs smooth user flows and interfaces for AI tools at WYSWYG. Focused on clean visuals, accessibility, and fast iterations.",
-        linkedin: "https://www.linkedin.com/in/omkarkhoche3448/",
-        github: "https://github.com/omkarkhoche"
+        "name": "Omkar Khoche",
+        "position": "Frontend Developer Intern @ WYSWYG Solutions",
+        "photo": "https://res.cloudinary.com/dkbzscmmq/image/upload/v1746024548/y1og3bjseyrodjnauja9.png",
+        "bio": "Omkar builds clean and user-friendly frontend interfaces for AI and low-code tools at WYSWYG. Skilled in React, UI/UX improvements, and rapid prototyping.",
+        "linkedin": "https://www.linkedin.com/in/omkarkhoche3448/",
+        "github": "https://github.com/omkarkhoche"
     },
     {
         name: "Manthan Barhate",
@@ -119,7 +119,7 @@ function Team() {
                                             className="bg-white/10 p-2 rounded-lg hover:bg-lime-400/20 hover:text-lime-400 transition-all"
                                             onClick={(e) => e.stopPropagation()}
                                         >
-                                            <Github  size={16} />
+                                            <Github size={16} />
                                         </a>
                                     )}
                                 </div>
