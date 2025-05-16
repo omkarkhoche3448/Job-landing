@@ -31,6 +31,13 @@ const Refunds = () => {
               )}
             </div>
           ))}
+          {section.listItems && (
+            <ul className="list-disc pl-6 text-white mb-4">
+              {section.listItems.map((item, itemIndex) => (
+                <li key={itemIndex}>{item}</li>
+              ))}
+            </ul>
+          )}
         </section>
       ))}
     </PolicyLayout>

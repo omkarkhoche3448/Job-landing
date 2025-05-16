@@ -58,7 +58,7 @@ function Integrations() {
                             </h2>
 
                             <p className="text-white/50 mt-4 text-base">
-                                Handjobs pulls listings from top sites like LinkedIn, Indeed, and ZipRecruiter — bringing every opportunity into one unified search. No more jumping between job boards.
+                                Handjobs pulls listings from top sites like LinkedIn, Indeed, and ZipRecruiter bringing every opportunity into one unified search. No more jumping between job boards.
                             </p>
                         </div>
                         <div>
