@@ -53,10 +53,10 @@ export function FeatureHighlights() {
             icon: <Brain size={24} />
         },
         {
-            title: "Saved Searches",
-            description: "Save your search criteria and receive alerts when new matching opportunities are available.",
+            title: "Saved Jobs",
+            description: "Easily save job posts to view them later from your saved list.",
             icon: <BookmarkCheck size={24} />
-        }
+        }        
     ];
 
     return (

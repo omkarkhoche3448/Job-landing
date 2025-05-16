@@ -18,6 +18,7 @@ const navLinks = [
 function Navbar() {
     const [isOpen, setIsOpen] = useState(false);
     const [activeSection, setActiveSection] = useState("");
+    const [showAuthButtons, setShowAuthButtons] = useState(false); 
     const location = useLocation();
 
     // Update active section based on scroll position
@@ -113,7 +114,7 @@ function Navbar() {
             <section className="relative py-4 lg:py-6">
                 <div className="container max-w-5xl mx-auto">
                     <div className="border border-white/15 rounded-[27px] lg:rounded-full bg-neutral-950/70 backdrop-blur">
-                        <figure className="grid grid-cols-2 lg:grid-cols-3 py-2 lg:px-2 px-4 items-center">
+                        <figure className="grid grid-cols-2 lg:grid-cols-2 py-2 lg:px-2 px-4 items-center">
                             <NavLink to={"/"} onClick={scrollToTop}>
                                 <img
                                     src={logoImage}
@@ -179,18 +180,22 @@ function Navbar() {
                                         </motion.div>
                                     )}
                                 </button>
-                                <Button
-                                    variant="secondary"
-                                    className="hidden lg:inline-flex items-center cursor-pointer"
-                                >
-                                    Login
-                                </Button>
-                                <Button
-                                    variant="primary"
-                                    className="hidden lg:inline-flex items-center cursor-pointer"
-                                >
-                                    Signup
-                                </Button>
+                                {showAuthButtons && ( // Conditionally render buttons
+                                    <>
+                                        <Button
+                                            variant="secondary"
+                                            className="hidden lg:inline-flex items-center cursor-pointer"
+                                        >
+                                            Login
+                                        </Button>
+                                        <Button
+                                            variant="primary"
+                                            className="hidden lg:inline-flex items-center cursor-pointer"
+                                        >
+                                            Signup
+                                        </Button>
+                                    </>
+                                )}
                             </div>
                         </figure>
 
