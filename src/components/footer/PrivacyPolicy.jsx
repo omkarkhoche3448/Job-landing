@@ -17,13 +17,13 @@ const PrivacyPolicy = () => {
           {section.subsections?.map((subsection, subIndex) => (
             <div key={subIndex} className="mt-6">
               {subsection.title && (
-                <h3 className="text-xl font-medium text-white  mb-3">
+                <h3 className="text-xl font-medium text-white mb-3">
                   {`${index + 1}.${subIndex + 1}. ${subsection.title}`}
                 </h3>
               )}
-              <p className="text-white  mb-4">{subsection.content}</p>
+              <p className="text-white mb-4">{subsection.content}</p>
               {subsection.listItems && (
-                <ul className="list-disc pl-6 text-white  mb-4">
+                <ul className="list-disc pl-6 text-white mb-4">
                   {subsection.listItems.map((item, itemIndex) => (
                     <li key={itemIndex}>{item}</li>
                   ))}
@@ -31,6 +31,13 @@ const PrivacyPolicy = () => {
               )}
             </div>
           ))}
+          {section.listItems && (
+            <ul className="list-disc pl-6 text-white mb-4">
+              {section.listItems.map((item, itemIndex) => (
+                <li key={itemIndex}>{item}</li>
+              ))}
+            </ul>
+          )}
         </section>
       ))}
     </PolicyLayout>

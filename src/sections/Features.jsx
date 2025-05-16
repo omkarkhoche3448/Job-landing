@@ -4,15 +4,15 @@ import Tag from "../components/Tag";
 import { Search, Filter, Bell, Briefcase, Clock, Zap, Target } from "lucide-react";
 import Key from "../components/Key";
 
-const features = [
-    "Smart Filters",
-    "Job Alerts",
-    "One-Click Apply",
-    "Resume Builder",
-    "Salary Insights",
-    "Interview Prep",
-    "Company Reviews",
-];
+    const features = [
+        "AI extension",
+        "Smart Filters",
+        "Job Alerts",
+        "Resume Builder",
+        "Salary Insights",
+        "ML Powered Job Matching",
+        "Quick Search Commands",
+    ];
 
 function Features() {
     return (

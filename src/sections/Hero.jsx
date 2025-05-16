@@ -149,7 +149,7 @@ function Hero() {
                     animate={{ y: 0, opacity: 1 }}
                     transition={{ delay: 0.6 }}
                 >
-                    Handjobs brings every opportunity to your fingertips — from LinkedIn to ZipRecruiter, find it all in one place. No more switching tabs.
+                    Handjobs brings every opportunity to your fingertips from LinkedIn to ZipRecruiter, find it all in one place. No more switching tabs.
                 </motion.p>
 
                 <motion.form
@@ -210,7 +210,7 @@ function Hero() {
                         whileHover={{ borderColor: "#a3e635" /* lime-400 */ }}
                     >
                         <BriefcaseBusiness className="w-4 h-4 text-lime-400 shrink-0" />
-                        <span>10,000+ Jobs</span>
+                        <span>25000 + jobs & internships</span>
                     </motion.div>
 
                     {/* Updated stat item styling with new icon */}
@@ -219,7 +219,7 @@ function Hero() {
                         whileHover={{ borderColor: "#60a5fa" /* blue-400 */ }}
                     >
                         <Network className="w-4 h-4 text-blue-400 shrink-0" />
-                        <span>100+ Companies</span>
+                        <span>1000+ Companies</span>
                     </motion.div>
 
                     {/* Updated stat item styling with new icon */}

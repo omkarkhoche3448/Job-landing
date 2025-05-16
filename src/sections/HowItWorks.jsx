@@ -24,10 +24,10 @@ function HowItWorks() {
         },
         {
             title: "Apply",
-            description: "Apply directly through our platform or follow links to the original job posting.",
+            description: "View job details and apply through the original job platform via provided links.",
             icon: <Send className="w-8 h-8 text-cyan-500" />,
             iconBg: "bg-white/10",
-        }
+        }        
     ];
 
     return (
