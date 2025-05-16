@@ -76,7 +76,7 @@ const FeatureBox = ({ title, description, icon, children, className }) => (
 );
 
 const FeatureDetails = ({ label, items }) => (
-  <div className="bg-black/20 rounded-xl p-4 border border-white/5 h-[140px]">
+  <div className="bg-black/10 rounded-xl p-4 border border-white/5 h-[140px]">
     <div className="flex justify-between items-center mb-3">
       <h4 className="text-sm font-medium">{label}</h4>
     </div>
@@ -175,7 +175,7 @@ const ComprehensiveSection = () => {
               
             </div>
             
-            <div className="bg-black/30 rounded-xl p-6 border border-white/10">
+            <div className="bg-black/10 rounded-xl p-6 border border-white/10">
               <h4 className="text-lg font-medium mb-4 text-lime-400">How it works</h4>
               
               <div className="space-y-6">

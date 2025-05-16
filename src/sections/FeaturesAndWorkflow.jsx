@@ -208,10 +208,10 @@ function FeaturesAndWorkflow() {
                                     </div>
                                 </div>
                                 <div className="relative ">
-                                    
+                                    <img
                                         src={platfromImg}
                                         alt="Workflow Diagram"
-                                        className="w-full h-full rounded-lg "
+                                        className="w-full h-full rounded-2xl "
                                         loading="lazy"
                                     />
 
