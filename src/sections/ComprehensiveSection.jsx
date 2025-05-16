@@ -198,17 +198,17 @@ const ComprehensiveSection = () => {
         </div>
       </div>
       
-      <div className="my-8 sm:my-12 flex items-center justify-center flex-wrap gap-2 sm:gap-3 max-w-3xl mx-auto px-3 sm:px-4">
-        <div className="w-full flex flex-wrap items-center justify-center gap-2 sm:gap-3">
+      <div className="my-6 md:my-8 lg:my-12 flex items-center justify-center flex-wrap gap-1.5 sm:gap-2 md:gap-3 max-w-full sm:max-w-3xl mx-auto px-2 sm:px-3 md:px-4">
+        <div className="w-full flex flex-wrap items-center justify-center gap-1.5 sm:gap-2 md:gap-3">
           {features.map((feature) => (
             <div
-              className="bg-neutral-900 border border-white/10 inline-flex px-2.5 sm:px-3 md:px-5 py-1.5 md:py-2 rounded-xl sm:rounded-2xl gap-2 sm:gap-3 items-center hover:scale-105 hover:border-lime-400/30 transition duration-500 group"
+              className="bg-neutral-900 border border-white/10 inline-flex px-2 sm:px-2.5 md:px-5 py-1 md:py-2 rounded-lg sm:rounded-xl md:rounded-2xl gap-1.5 sm:gap-2 md:gap-3 items-center hover:scale-105 hover:border-lime-400/30 transition duration-500 group"
               key={feature}
             >
-              <span className="bg-lime-400 text-neutral-900 w-4 h-4 sm:w-5 sm:h-5 rounded-full inline-flex items-center justify-center text-base sm:text-xl group-hover:rotate-45 transition duration-500">
+              <span className="bg-lime-400 text-neutral-900 w-3.5 h-3.5 sm:w-4 sm:h-4 md:w-5 md:h-5 rounded-full inline-flex items-center justify-center text-xs sm:text-sm md:text-base group-hover:rotate-45 transition duration-500 shrink-0">
                 &#10038;
               </span>
-              <span className="font-medium text-sm sm:text-base md:text-lg whitespace-nowrap">
+              <span className="font-medium text-xs sm:text-sm md:text-base whitespace-nowrap">
                 {feature}
               </span>
             </div>

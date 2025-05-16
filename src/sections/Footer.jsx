@@ -47,7 +47,7 @@ const Footer = () => {
                                 src={siteLogo}
                                 alt={companyInfo.name}
                                 loading="lazy"
-                                className="h-8 sm:h-10 md:h-12 w-auto"
+                                className="h-10 md:h-12 w-auto"
                                 />
                         </NavLink>
                         <p className="text-white/70 text-sm sm:text-base leading-relaxed max-w-md">

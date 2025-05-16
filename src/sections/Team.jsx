@@ -66,7 +66,7 @@ function Team() {
     }, [selectedMember]);
 
     return (
-        <section id="team" className="py-16 relative overflow-hidden">
+        <section id="team" className="py-12 md:py-16 relative overflow-hidden">
             {/* Background gradient */}
             <div className="absolute inset-0 bg-gradient-to-b from-transparent via-lime-400/5 to-transparent"></div>
 
@@ -74,21 +74,21 @@ function Team() {
                 <div className="flex justify-center">
                     <Tag>Our Team</Tag>
                 </div>
-                <h2 className="text-4xl lg:text-5xl font-medium text-center mt-4 max-w-2xl mx-auto leading-tight">
+                <h2 className="text-3xl md:text-4xl lg:text-5xl font-medium text-center mt-4 max-w-2xl mx-auto leading-tight">
                     Meet the <span className="text-lime-400">innovators</span>
                 </h2>
-                <p className="text-white/50 text-base text-center mt-4 max-w-2xl mx-auto">
+                <p className="text-white/50 text-sm md:text-base text-center mt-3 md:mt-4 max-w-2xl mx-auto px-2">
                     Passionate individuals working together to revolutionize your job search experience
                 </p>
 
-                <div className="mt-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
+                <div className="mt-8 md:mt-10 grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-3 md:gap-5">
                     {teamMembers.map((member, idx) => (
                         <div
                             key={idx}
                             className="group relative backdrop-blur-sm rounded-xl overflow-hidden border border-white/10 hover:border-lime-400/30 transition-all duration-500 ease-in-out cursor-pointer"
                             onClick={() => setSelectedMember(member)}
                         >
-                            <div className="aspect-[4/5] overflow-hidden">
+                            <div className="aspect-square sm:aspect-[4/5] overflow-hidden">
                                 <img
                                     src={member.photo}
                                     alt={member.name}
@@ -98,29 +98,36 @@ function Team() {
                                 <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent"></div>
                             </div>
 
-                            <div className="absolute -bottom-12 group-hover:bottom-0 transition-all duration-500 ease-in-out left-0 right-0 p-4">
-                                <h3 className="text-xl font-medium text-white group-hover:text-lime-400 transition-colors">
+                            <div className="absolute -bottom-8 md:-bottom-12 group-hover:bottom-0 transition-all duration-500 ease-in-out left-0 right-0 p-2 sm:p-4">
+                                <h3 className="text-sm sm:text-lg md:text-xl font-medium text-white group-hover:text-lime-400 transition-colors truncate">
                                     {member.name}
                                 </h3>
-                                <p className="text-white/70 text-sm mt-1">{member.position}</p>
+                                <p className="text-white/70 text-xs md:text-sm mt-0.5 sm:mt-1 truncate">
+                                    {member.position}
+                                </p>
 
-                                <div className="flex space-x-3 mt-4 opacity-0 -translate-y-2 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-500 ease-out">
+                                <div className="flex space-x-2 sm:space-x-3 mt-2 md:mt-4 md:opacity-0 md:-translate-y-2 md:group-hover:opacity-100 md:group-hover:translate-y-0 transition-all duration-500 ease-out
+                                opacity-0 -translate-y-2 group-hover:opacity-100 group-hover:translate-y-0">
                                     {member.linkedin && (
                                         <a
                                             href={member.linkedin}
-                                            className="bg-white/10 p-2 rounded-lg hover:bg-lime-400/20 hover:text-lime-400 transition-all"
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="bg-white/10 p-1.5 sm:p-2 rounded-lg hover:bg-lime-400/20 hover:text-lime-400 transition-all"
                                             onClick={(e) => e.stopPropagation()}
                                         >
-                                            <Linkedin size={16} />
+                                            <Linkedin size={14} className="sm:w-4 sm:h-4 md:w-4 md:h-4" />
                                         </a>
                                     )}
                                     {member.github && (
                                         <a
                                             href={member.github}
-                                            className="bg-white/10 p-2 rounded-lg hover:bg-lime-400/20 hover:text-lime-400 transition-all"
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="bg-white/10 p-1.5 sm:p-2 rounded-lg hover:bg-lime-400/20 hover:text-lime-400 transition-all"
                                             onClick={(e) => e.stopPropagation()}
                                         >
-                                            <Github size={16} />
+                                            <Github size={14} className="sm:w-4 sm:h-4 md:w-4 md:h-4" />
                                         </a>
                                     )}
                                 </div>
@@ -132,22 +139,23 @@ function Team() {
                 {/* Modal */}
                 {selectedMember && (
                     <div
-                        className="fixed inset-0 bg-black/90 backdrop-blur-sm z-50 flex items-center justify-center p-4"
+                        className="fixed inset-0 bg-black/90 backdrop-blur-sm z-50 flex items-center justify-center p-3 md:p-4"
                         onClick={() => setSelectedMember(null)}
                     >
                         <div
-                            className="bg-neutral-900/80 backdrop-blur-md border border-white/10 rounded-xl p-6 max-w-lg w-full relative"
+                            className="bg-neutral-900/80 backdrop-blur-md border border-white/10 rounded-xl p-4 md:p-6 max-w-lg w-full relative"
                             onClick={(e) => e.stopPropagation()}
                         >
                             <button
                                 onClick={() => setSelectedMember(null)}
-                                className="absolute top-4 right-4 p-2 rounded-lg bg-white/10 hover:bg-lime-400/20 hover:text-lime-400 transition-all"
+                                className="absolute top-3 right-3 md:top-4 md:right-4 p-2 rounded-lg bg-white/10 hover:bg-lime-400/20 hover:text-lime-400 transition-all"
+                                aria-label="Close modal"
                             >
-                                <X size={20} />
+                                <X size={18} />
                             </button>
 
-                            <div className="flex flex-col sm:flex-row gap-6">
-                                <div className="w-32 h-32 rounded-xl overflow-hidden shrink-0">
+                            <div className="flex flex-col sm:flex-row gap-4 md:gap-6 mt-2 sm:mt-0">
+                                <div className="w-24 h-24 sm:w-32 sm:h-32 rounded-xl overflow-hidden shrink-0 mx-auto sm:mx-0">
                                     <img
                                         src={selectedMember.photo}
                                         alt={selectedMember.name}
@@ -156,18 +164,28 @@ function Team() {
                                     />
                                 </div>
                                 <div>
-                                    <h3 className="text-2xl font-medium mb-1">{selectedMember.name}</h3>
-                                    <p className="text-lime-400 text-sm mb-4">{selectedMember.position}</p>
+                                    <h3 className="text-xl md:text-2xl font-medium mb-1 text-center sm:text-left">{selectedMember.name}</h3>
+                                    <p className="text-lime-400 text-sm mb-3 md:mb-4 text-center sm:text-left">{selectedMember.position}</p>
                                     <p className="text-white/70 text-sm leading-relaxed">{selectedMember.bio}</p>
 
-                                    <div className="flex gap-3 mt-6">
+                                    <div className="flex gap-3 mt-5 md:mt-6 justify-center sm:justify-start">
                                         {selectedMember.linkedin && (
-                                            <a href={selectedMember.linkedin} className="bg-white/10 p-2 rounded-lg hover:bg-lime-400/20 hover:text-lime-400 transition-all">
+                                            <a 
+                                                href={selectedMember.linkedin} 
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                className="bg-white/10 p-2 rounded-lg hover:bg-lime-400/20 hover:text-lime-400 transition-all"
+                                            >
                                                 <Linkedin size={18} />
                                             </a>
                                         )}
                                         {selectedMember.github && (
-                                            <a href={selectedMember.github} className="bg-white/10 p-2 rounded-lg hover:bg-lime-400/20 hover:text-lime-400 transition-all">
+                                            <a 
+                                                href={selectedMember.github} 
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                className="bg-white/10 p-2 rounded-lg hover:bg-lime-400/20 hover:text-lime-400 transition-all"
+                                            >
                                                 <Github size={18} />
                                             </a>
                                         )}
