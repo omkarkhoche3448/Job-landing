@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import logoImage from "../assets/images/jobs.png";
+import logoImage from "../assets/images/jobs.webp";
 import { Menu, X } from "lucide-react";
 import Button from "../components/Button";
 import { AnimatePresence, motion } from "framer-motion";

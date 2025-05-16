@@ -1,7 +1,7 @@
 import React from "react";
 import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
 import { companyInfo, footerLinks, socialLinks } from "../components/footer/data/footerSectionData";
-import siteLogo from "../assets/images/jobs.png";
+import siteLogo from "../assets/images/jobs.webp";
 
 const Footer = () => {
     const location = useLocation();
