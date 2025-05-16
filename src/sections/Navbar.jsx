@@ -120,7 +120,7 @@ function Navbar() {
                                     src={logoImage}
                                     alt="Handjobs logo"
                                     loading="lazy"
-                                    className="h-8 w-auto sm:h-8 md:h-10 lg:h-11 ml-2"
+                                    className="h-10 w-auto sm:h-8 md:h-10 lg:h-11 ml-2"
                                     />
                             </NavLink>
                             <div className="hidden lg:flex justify-center items-center">

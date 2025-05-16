@@ -3,15 +3,11 @@ import { BrowserRouter as Router, Route, Routes, useLocation } from "react-route
 import { AnimatePresence, motion } from "framer-motion";
 import CallToAction from "./sections/CallToAction";
 import Faqs from "./sections/Faqs";
-import Features from "./sections/Features";
 import Footer from "./sections/Footer";
 import Hero from "./sections/Hero";
-import HowItWorks from "./sections/HowItWorks";
 import Integrations from "./sections/Integrations";
 import Introduction from "./sections/Introduction";
-import LogoTicker from "./sections/LogoTicker";
 import Navbar from "./sections/Navbar";
-import { FeatureHighlights } from "./sections/FeatureHighlight";
 import Testimonials from "./sections/Testimonials";
 import Pricing from "./sections/Pricing";
 import Team from "./sections/Team";
