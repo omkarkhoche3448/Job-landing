@@ -18,7 +18,7 @@ const navLinks = [
 function Navbar() {
     const [isOpen, setIsOpen] = useState(false);
     const [activeSection, setActiveSection] = useState("");
-    const [showAuthButtons, setShowAuthButtons] = useState(false);
+    const [showAuthButtons, setShowAuthButtons] = useState(false); // This is false by default
     const location = useLocation();
 
     // Update active section based on scroll position
@@ -216,37 +216,56 @@ function Navbar() {
                                                     key={link.href}
                                                     to="/"
                                                     className={`block w-full text-center py-2 transition-colors duration-300 ${activeSection === link.href ? 'text-lime-400' : 'text-white hover:text-lime-300'}`}
-                                                    onClick={() => setIsOpen(false)}
+                                                    onClick={() => {
+                                                        setIsOpen(false);
+                                                        scrollToTop();
+                                                    }}
                                                 >
                                                     {link.label}
                                                 </Link>
                                             ) : (
-                                                <ScrollToSection
+                                                <a
                                                     key={link.href}
-                                                    to={link.href}
+                                                    href={link.href}
                                                     className={`block w-full text-center py-2 transition-colors duration-300 ${activeSection === link.href ? 'text-lime-400' : 'text-white hover:text-lime-300'}`}
-                                                    onClick={() => setIsOpen(false)}
+                                                    onClick={(e) => {
+                                                        e.preventDefault();
+                                                        setIsOpen(false);
+                                                        const sectionId = link.href.substring(1);
+                                                        const element = document.getElementById(sectionId);
+                                                        if (element) {
+                                                            setTimeout(() => {
+                                                                const yOffset = -80; 
+                                                                const y = element.getBoundingClientRect().top + window.pageYOffset + yOffset;
+                                                                window.scrollTo({top: y, behavior: 'smooth'});
+                                                            }, 100);
+                                                        }
+                                                    }}
                                                 >
                                                     {link.label}
-                                                </ScrollToSection>
+                                                </a>
                                             )
                                         ))}
 
-                                        <Button
-                                            className="w-fit mt-2 cursor-pointer"
-                                            variant="secondary"
-                                            onClick={() => setIsOpen(false)}
-                                        >
-                                            Log In
-                                        </Button>
-                                        <Button
-                                            variant="primary"
-                                            size="sm"
-                                            className="w-fit mt-2 cursor-pointer"
-                                            onClick={() => setIsOpen(false)}
-                                        >
-                                            Sign Up
-                                        </Button>
+                                        {showAuthButtons && (
+                                            <>
+                                                <Button
+                                                    className="w-fit mt-2 cursor-pointer"
+                                                    variant="secondary"
+                                                    onClick={() => setIsOpen(false)}
+                                                >
+                                                    Log In
+                                                </Button>
+                                                <Button
+                                                    variant="primary"
+                                                    size="sm"
+                                                    className="w-fit mt-2 cursor-pointer"
+                                                    onClick={() => setIsOpen(false)}
+                                                >
+                                                    Sign Up
+                                                </Button>
+                                            </>
+                                        )}
                                     </div>
                                 </motion.figure>
                             )}
