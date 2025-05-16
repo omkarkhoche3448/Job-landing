@@ -175,7 +175,7 @@ const ComprehensiveSection = () => {
               
             </div>
             
-            <div className="bg-black/10 rounded-xl p-6 border border-white/10">
+            <div className="bg-black/10 rounded-xl p-6 border border-white/10 hidden lg:block">
               <h4 className="text-lg font-medium mb-4 text-lime-400">How it works</h4>
               
               <div className="space-y-6">
