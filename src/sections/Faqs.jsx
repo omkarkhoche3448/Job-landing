@@ -11,16 +11,12 @@ const faqs = [
     },
     {
         question: "Is Handjobs completely free to use?",
-        answer: "We offer a free tier that gives you access to basic search functionality across platforms. For advanced features like unlimited saved jobs, real-time notifications, and application tracking, we offer affordable premium plans.",
+        answer: "We offer a free tier that gives you access to basic search functionality across platforms. For advanced features like unlimited saved jobs, real-time notifications, we offer affordable premium plans.",
     },
     {
-        question: "How often are job listings updated?",
-        answer: "Our crawlers run continuously, ensuring that new job postings are added to our database as soon as they appear on the source platforms. Premium users receive real-time notifications for new jobs matching their criteria.",
-    },
-    {
-        question: "Can I apply to jobs directly through Handjobs?",
-        answer: "Yes, for many job listings you can apply directly through our platform. For others, we provide a direct link to the original posting where you can complete your application.",
-    },
+        question: "Can I apply to multiple jobs through Handjobs?",
+        answer: "Yes, absolutely! Since we link directly to original job postings, you can apply to as many opportunities as you like. Each job will redirect you to its source platform, where you can complete your application individually.",
+    },    
     {
         question: "How is Handjobs different from other job search platforms?",
         answer: "Unlike traditional job boards, Handjobs doesn't host job listings directly. Instead, we aggregate opportunities from multiple sources, saving you the time and effort of searching across different platforms. Our advanced filtering and search capabilities help you find exactly what you're looking for.",
