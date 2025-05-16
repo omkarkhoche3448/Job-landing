@@ -171,79 +171,84 @@ export const policies = {
       }
     ]
   },
-  refunds: {
+ refunds : {
     lastUpdated: "April 13, 2025",
     sections: [
       {
         title: "Cancellation Policy",
-        content: "At Handjobs, we understand that circumstances change. This policy outlines the conditions and procedures for cancellations of our premium services and subscriptions.",
+        content:
+          "We believe in empowering our users with clear and flexible options. Whether you're exploring or committed long-term, we’ve made it easy to manage your subscription with peace of mind.",
         subsections: [
           {
             title: "Free Services",
-            content: "You may cancel your free account at any time without incurring any charges or penalties."
+            content:
+              "You’re always welcome to use and cancel our free services at any time—no commitments, no charges."
           },
           {
-            title: "Premium Subscriptions", 
-            content: "For premium subscriptions:",
+            title: "Premium Subscriptions",
+            content: "Here’s how we ensure fair and transparent options across all plans:",
             listItems: [
-              "Monthly subscriptions can be cancelled at any time. However, refunds are only available within the first 3 days of the billing cycle.",
-              "Annual subscriptions can be cancelled within 14 days of purchase for a full refund. After this period, cancellations will take effect at the end of the subscription term.",
-              "No partial refunds will be provided for unused periods of service unless a valid issue is presented (see Refund Policy)."
+              "Monthly Plan — Designed for commitment. All sales are final, allowing us to deliver the best ongoing value every month.",
+              "3-Month & 6-Month Plans — Try us risk-free! Enjoy a full refund within the first 3 days of purchase—no questions asked.",
+              "Annual Plan — Full flexibility with a 14-day satisfaction guarantee from your purchase date."
             ]
           }
         ]
       },
       {
         title: "How to Cancel",
-        content: "To cancel your subscription or service:",
+        content:
+          "Changing your plan is easy, and support is always just a click away:",
         listItems: [
           "Log in to your Handjobs account",
-          "Go to \"Account Settings\" > \"Subscriptions\"",
-          "Click on \"Cancel Subscription\" and follow the instructions",
-          "Or, contact our customer support team for help"
+          "Navigate to \"Account Settings\" > \"Subscriptions\"",
+          "Click on \"Cancel Subscription\" and follow the guided steps",
+          "Need help? Our friendly support team is here for you"
         ]
       },
       {
         title: "Refund Policy",
-        content: "Handjobs strives to provide high-quality services. However, we understand that refunds may be necessary in specific situations.",
+        content:
+          "Your experience matters. Our refund process is designed to be quick, transparent, and fair.",
         subsections: [
           {
-            title: "Eligibility for Refunds",
-            content: "You may be eligible for a refund under the following conditions:",
+            title: "You're Covered If:",
+            content: "We’re happy to process a refund when any of the following applies:",
             listItems: [
-              "Cancellation of a monthly subscription within 3 days of the billing date",
-              "Cancellation of an annual subscription within 14 days of purchase",
-              "Technical issues that prevent use of the premium services",
-              "Duplicate charges or billing errors",
-              "Failure to deliver promised features or services"
+              "You cancel a 3-month or 6-month plan within 3 days of purchase — no questions asked",
+              "You cancel an annual plan within 14 days of purchase",
+              "You encounter technical issues that impact your ability to use the service",
+              "You were billed incorrectly or more than once",
+              "We fell short of delivering promised features"
             ]
           },
           {
-            title: "Refund Process",
-            content: "To request a refund:",
+            title: "How Refunds Work",
+            content:
+              "Here’s how simple it is to request your refund:",
             listItems: [
-              "Contact our support team with your account and purchase details",
-              "Explain the reason for the refund request",
-              "Our team will respond within 5–6 business days after reviewing your case",
-              "If approved, the refund will be issued to your original payment method"
+              "Reach out to support with your account and order details",
+              "Briefly describe your concern (or just say you’re within the refund window)",
+              "We’ll review and respond within 5–6 business days",
+              "Approved refunds are processed back to your original payment method"
             ]
           }
         ]
       },
       {
-        title: "Non-Refundable Items",
-        content: "The following are generally not eligible for refunds:",
+        title: "What’s Not Eligible",
+        content:
+          "To keep our pricing fair for all users, some items fall outside our refund policy:",
         listItems: [
-          "Monthly subscriptions cancelled after 3 days of the billing cycle",
-          "Annual subscriptions cancelled after the 14-day window",
-          "Premium services that have been used extensively",
-          "Fees for specialized or promoted job listings",
-          "Any one-time services outside of subscription plans"
+          "Monthly plans, due to their short-term nature, are not refundable",
+          "3-month and 6-month plans after 3 days from purchase",
+          "Annual plans after the 14-day grace period",
         ]
       },
       {
-        title: "Special Circumstances",
-        content: "We recognize that rare, exceptional cases may arise. Refund requests due to such situations will be reviewed individually. Please contact support with detailed information to request an exception."
+        title: "Exceptional Circumstances",
+        content:
+          "We understand that life happens. If you believe your situation deserves a second look, let us know. We're here to listen and help."
       }
     ]
   }

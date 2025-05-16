@@ -97,7 +97,7 @@ function Pricing() {
                 price: "₹69",
                 period: "/month",
                 description: "First 69 users only",
-                subDescription: "For serious job hunters",
+                subDescription: "Early Bird Offer",
                 buttonText: "Start Free Trial",
                 buttonVariant: "primary",
                 features: [
@@ -105,7 +105,7 @@ function Pricing() {
                     "AI Auto Filler",
                     "Unlimited saved jobs",
                     "Real-time notifications",
-                    "Smart resume analyzer ",
+                    "Smart resume analyzer",
                     "Salary insights"
                 ],
                 recommended: true,
@@ -134,7 +134,7 @@ function Pricing() {
                 price: "₹189",
                 period: " for 3 months",
                 description: "First 69 users only",
-                subDescription: "For serious job hunters",
+                subDescription: "Early Bird Offer",
                 buttonText: "Start Free Trial",
                 buttonVariant: "primary",
                 features: [
@@ -142,8 +142,8 @@ function Pricing() {
                     "AI Auto Filler",
                     "Unlimited saved jobs",
                     "Real-time notifications",
-                    "Smart resume analyzer ",
-                    "Salary insights",
+                    "Smart resume analyzer",
+                    "Salary insights"
                 ],
                 recommended: true
             }
@@ -170,7 +170,7 @@ function Pricing() {
                 price: "₹349",
                 period: " for 6 months",
                 description: "First 69 users only",
-                subDescription: "For serious job hunters",
+                subDescription: "Early Bird Offer",
                 buttonText: "Start Free Trial",
                 buttonVariant: "primary",
                 features: [
@@ -178,8 +178,8 @@ function Pricing() {
                     "AI Auto Filler",
                     "Unlimited saved jobs",
                     "Real-time notifications",
-                    "Smart resume analyzer ",
-                    "Salary insights",
+                    "Smart resume analyzer",
+                    "Salary insights"
                 ],
                 recommended: true
             }
