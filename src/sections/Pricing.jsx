@@ -66,6 +66,123 @@ const cardVariants = {
 };
 
 function Pricing() {
+<<<<<<< Updated upstream
+=======
+    const [activePlan, setActivePlan] = useState("monthly");
+
+    const pricingData = {
+        monthly: [
+            {
+                name: "Free",
+                price: "₹0",
+                period: "/month",
+                description: "Perfect for casual job seekers",
+                buttonText: "Get Started",
+                buttonVariant: "outline",
+                features: [
+                    "Basic job search across platforms",
+                    "Limited filters",
+                    "Save up to 5 jobs",
+                    "Weekly email alerts"
+                ],
+                recommended: false
+            },
+            {
+                name: "Pro",
+                originalPrice: "₹99",
+                price: "₹69",
+                period: "/month",
+                description: "First 69 users only",
+                subDescription: "For serious job hunters",
+                buttonText: "Start Free Trial",
+                buttonVariant: "primary",
+                features: [
+                    "Advanced search with all filters",
+                    "AI Auto Filler",
+                    "Unlimited saved jobs",
+                    "Real-time notifications",
+                    "Smart resume analyzer ",
+                    "Salary insights"
+                ],
+                recommended: true,
+                earlyAccess: true
+            }
+        ],
+        quarterly: [
+            {
+                name: "Free",
+                price: "₹0",
+                period: "/month",
+                description: "Perfect for casual job seekers",
+                buttonText: "Get Started",
+                buttonVariant: "outline",
+                features: [
+                    "Basic job search across platforms",
+                    "Limited filters",
+                    "Save up to 5 jobs",
+                    "Weekly email alerts"
+                ],
+                recommended: false
+            },
+            {
+                name: "Pro",
+                originalPrice: "₹249",
+                price: "₹189",
+                period: " for 3 months",
+                description: "First 69 users only",
+                subDescription: "For serious job hunters",
+                buttonText: "Start Free Trial",
+                buttonVariant: "primary",
+                features: [
+                    "Advanced search with all filters",
+                    "AI Auto Filler",
+                    "Unlimited saved jobs",
+                    "Real-time notifications",
+                    "Smart resume analyzer ",
+                    "Salary insights",
+                ],
+                recommended: true
+            }
+        ],
+        biannual: [
+            {
+                name: "Free",
+                price: "₹0",
+                period: "/month",
+                description: "Perfect for casual job seekers",
+                buttonText: "Get Started",
+                buttonVariant: "outline",
+                features: [
+                    "Basic job search across platforms",
+                    "Limited filters",
+                    "Save up to 5 jobs",
+                    "Weekly email alerts"
+                ],
+                recommended: false
+            },
+            {
+                name: "Pro",
+                originalPrice: "₹499",
+                price: "₹349",
+                period: " for 6 months",
+                description: "First 69 users only",
+                subDescription: "For serious job hunters",
+                buttonText: "Start Free Trial",
+                buttonVariant: "primary",
+                features: [
+                    "Advanced search with all filters",
+                    "AI Auto Filler",
+                    "Unlimited saved jobs",
+                    "Real-time notifications",
+                    "Smart resume analyzer ",
+                    "Salary insights",
+                ],
+                recommended: true
+            }
+        ]
+    };
+
+>>>>>>> Stashed changes
     return (
         <section id="pricing" className="py-16 relative overflow-hidden">
             {/* Background gradient */}
