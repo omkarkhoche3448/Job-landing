@@ -1,7 +1,7 @@
 import React from "react";
 import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
 import { companyInfo, footerLinks, socialLinks } from "../components/footer/data/footerSectionData";
-import siteLogo from "../assets/images/logo.svg";
+import siteLogo from "../assets/images/jobs.png";
 
 const Footer = () => {
     const location = useLocation();
@@ -46,8 +46,9 @@ const Footer = () => {
                             <img
                                 src={siteLogo}
                                 alt={companyInfo.name}
-                                className="h-12 sm:h-16"
-                            />
+                                loading="lazy"
+                                className="h-8 sm:h-10 md:h-12 w-auto"
+                                />
                         </NavLink>
                         <p className="text-white/70 text-sm sm:text-base leading-relaxed max-w-md">
                             {companyInfo.slogan}

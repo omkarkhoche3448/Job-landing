@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import logoImage from "../assets/images/logo.svg";
+import logoImage from "../assets/images/jobs.png";
 import { Menu, X } from "lucide-react";
 import Button from "../components/Button";
 import { AnimatePresence, motion } from "framer-motion";
@@ -18,7 +18,7 @@ const navLinks = [
 function Navbar() {
     const [isOpen, setIsOpen] = useState(false);
     const [activeSection, setActiveSection] = useState("");
-    const [showAuthButtons, setShowAuthButtons] = useState(false); 
+    const [showAuthButtons, setShowAuthButtons] = useState(false);
     const location = useLocation();
 
     // Update active section based on scroll position
@@ -118,9 +118,10 @@ function Navbar() {
                             <NavLink to={"/"} onClick={scrollToTop}>
                                 <img
                                     src={logoImage}
-                                    alt="layer logo"
-                                    className="h-9 w-auto md:h-auto"
-                                />
+                                    alt="Handjobs logo"
+                                    loading="lazy"
+                                    className="h-8 w-auto sm:h-8 md:h-10 lg:h-11 ml-2"
+                                    />
                             </NavLink>
                             <div className="hidden lg:flex justify-center items-center">
                                 <nav className="flex gap-6 font-medium">

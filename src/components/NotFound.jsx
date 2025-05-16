@@ -5,7 +5,7 @@ import notFoundImage from "../assets/images/4044.png";
 const NotFound = () => {
   return (
     <div className="min-h-screen flex flex-col items-center justify-center  text-white">
-      <img src={notFoundImage} alt="404 Not Found" className="w-1/2 max-w-md mb-8" />
+      <img src={notFoundImage} alt="404 Not Found" loading="lazy" className="w-1/2 max-w-md mb-8"  />
       <p className="text-white/70 mb-8">Sorry, the page you are looking for does not exist.</p>
       <Link 
         to="/" 

@@ -92,6 +92,7 @@ function Team() {
                                 <img
                                     src={member.photo}
                                     alt={member.name}
+                                    loading="lazy"
                                     className="w-full h-full object-cover transition-transform duration-1000 ease-out group-hover:scale-110"
                                 />
                                 <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent"></div>
@@ -150,6 +151,7 @@ function Team() {
                                     <img
                                         src={selectedMember.photo}
                                         alt={selectedMember.name}
+                                        loading="lazy"
                                         className="w-full h-full object-cover"
                                     />
                                 </div>

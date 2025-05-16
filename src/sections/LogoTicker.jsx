@@ -46,6 +46,7 @@ function LogoTicker() {
                                         src={each.image}
                                         alt={each.name}
                                         key={each.name}
+                                        loading="lazy"
                                     />
                                 ))}
                             </Fragment>

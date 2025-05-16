@@ -21,11 +21,8 @@ import TermsAndConditions from "./components/footer/TermsAndConditions";
 import Refunds from "./components/footer/Refunds";
 import NotFound from "./components/NotFound";
 import ScrollToTopButton from "./components/ScrollToTopButton";
-// import ScrollProgressBar from "./components/ScrollProgressBar";
-// import SectionDots from "./components/SectionDots";
-// import PageLoader from "./components/PageLoader";
-// import { useKeyboardNavigation } from "./hooks/useKeyboardNavigation";
-// import KeyboardShortcutsHelp from "./components/KeyboardShortcutsHelp";
+import ComprehensiveSection from "./sections/ComprehensiveSection";
+import FeaturesAndWorkflow from "./sections/FeaturesAndWorkflow";
 
 // Enhanced Page transition component
 const PageTransition = ({ children }) => {
@@ -78,9 +75,7 @@ function HomeLayout() {
     { id: "hero", label: "Home" },
     { id: "introduction", label: "Introduction" },
     { id: "features", label: "Features" },
-    { id: "how-it-works", label: "How It Works" },
     { id: "integrations", label: "Integrations" },
-    { id: "feature-highlights", label: "Highlights" },
     { id: "team", label: "Team" },
     { id: "testimonials", label: "Testimonials" },
     { id: "pricing", label: "Pricing" },
@@ -154,10 +149,9 @@ function HomeLayout() {
       </motion.div>
       
       {/* Apply similar animations to other sections */}
-      <section id="features"><Features /></section>
-      <section id="how-it-works"><HowItWorks /></section>
+      <section id="features"><ComprehensiveSection /></section>
+      <section id="features-workflow"><FeaturesAndWorkflow/></section>
       <section id="integrations"><Integrations /></section>
-      <section id="feature-highlights"><FeatureHighlights /></section>
       <section id="team"><Team /></section>
       <section id="testimonials"><Testimonials /></section>
       <section id="pricing"><Pricing /></section>
