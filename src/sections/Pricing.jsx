@@ -1,7 +1,7 @@
 import React, { useState, useRef } from "react";
 import { motion } from "framer-motion";
 import Tag from "../components/Tag";
-import { Check, ChevronLeft, ChevronRight } from "lucide-react";
+import { Check} from "lucide-react";
 import Button from "../components/Button";
 
 // Animation variants
@@ -11,8 +11,9 @@ const cardVariants = {
         opacity: 1,
         y: 0,
         transition: {
-            duration: 0.6,
-            ease: "easeOut"
+            duration: 0.8,
+            ease: "easeOut",
+            when: "beforeChildren"
         }
     }
 };
@@ -24,7 +25,8 @@ const featureVariants = {
         x: 0,
         transition: {
             delay: i * 0.1,
-            duration: 0.4
+            duration: 0.4,
+            ease: "easeOut"
         }
     })
 };
@@ -246,24 +248,16 @@ function Pricing() {
                     {pricingData[activePlan].map((plan, index) => (
                         <motion.div
                             key={index}
-                            className={`bg-neutral-900/50 backdrop-blur-sm border ${plan.recommended ? 'border-lime-400/50' : 'border-white/10'
-                                } rounded-2xl p-6 sm:p-8 hover:border-lime-400/30 transition-all duration-300 relative 
-                                  md:w-[340px] min-w-[280px] sm:min-w-[320px] flex-shrink-0 mx-4 md:mx-0 shadow-xl
-                                  snap-center mt-3`}
-                            variants={cardVariants}
-                            initial="hidden"
-                            whileInView="visible"
-                            viewport={{ once: true, amount: 0.2 }}
+                            className={`bg-neutral-900/50 backdrop-blur-sm border ${
+                                plan.recommended ? 'border-lime-400/50' : 'border-white/10'
+                            } rounded-2xl p-6 sm:p-8 hover:border-lime-400/30 transition-all duration-300 relative 
+                              md:w-[340px] min-w-[280px] sm:min-w-[320px] flex-shrink-0 mx-4 md:mx-0 shadow-xl
+                              snap-center mt-3`}
+                            initial={{ opacity: 1 }}
                             whileHover={{ y: -8, transition: { duration: 0.3 } }}
                         >
-                            {plan.recommended && (
-                                <div className="absolute -top-3 left-1/2 transform -translate-x-1/2 bg-lime-400 text-neutral-900 px-4 sm:px-6 py-1 rounded-full text-xs sm:text-sm font-medium whitespace-nowrap">
-                                    {activePlan === "monthly" && index === 1 ? "Early Access" : "Recommended"}
-                                </div>
-                            )}
-
                             <div className="flex flex-col h-full">
-                                <div className="min-h-[150px] md:min-h-[210px] ">
+                                <div className="min-h-[150px] md:min-h-[210px]">
                                     <h3 className="text-2xl sm:text-3xl font-semibold mb-4 bg-gradient-to-r from-white to-white/80 bg-clip-text text-transparent">
                                         {plan.name}
                                     </h3>
@@ -271,22 +265,45 @@ function Pricing() {
                                     <div className="flex items-baseline mb-2">
                                         <motion.span
                                             key={plan.price}
-                                            initial={{ opacity: 0, y: 20 }}
-                                            animate={{ opacity: 1, y: 0 }}
+                                            initial={{ opacity: 0, scale: 0.95 }}
+                                            animate={{ opacity: 1, scale: 1 }}
+                                            transition={{ 
+                                                duration: 0.4,
+                                                ease: [0.23, 1, 0.32, 1] 
+                                            }}
                                             className="text-4xl sm:text-5xl font-bold tracking-tight"
                                         >
                                             {plan.price}
                                         </motion.span>
-                                        <span className="text-white/50 ml-2 text-base sm:text-lg">{plan.period}</span>
+                                        <motion.span
+                                            key={plan.period}
+                                            initial={{ opacity: 0 }}
+                                            animate={{ opacity: 1 }}
+                                            transition={{ duration: 0.3, delay: 0.1 }}
+                                            className="text-white/50 ml-2 text-base sm:text-lg"
+                                        >
+                                            {plan.period}
+                                        </motion.span>
                                     </div>
 
                                     {plan.originalPrice && (
-                                        <div className="flex items-center gap-3 mb-2">
-                                            <span className="text-white/50 text-base sm:text-lg line-through">{plan.originalPrice}</span>
+                                        <motion.div
+                                            initial={{ opacity: 0, scale: 0.95 }}
+                                            animate={{ opacity: 1, scale: 1 }}
+                                            transition={{ 
+                                                duration: 0.4,
+                                                delay: 0.1,
+                                                ease: [0.23, 1, 0.32, 1]
+                                            }}
+                                            className="flex items-center gap-3 mb-2"
+                                        >
+                                            <span className="text-white/50 text-base sm:text-lg line-through">
+                                                {plan.originalPrice}
+                                            </span>
                                             <span className="bg-lime-400/10 text-lime-400 text-xs sm:text-sm font-medium px-2 py-0.5 rounded-full border border-lime-400/20">
                                                 {Math.round(((parseFloat(plan.originalPrice.replace('₹', '')) - parseFloat(plan.price.replace('₹', ''))) / parseFloat(plan.originalPrice.replace('₹', ''))) * 100)}% OFF
                                             </span>
-                                        </div>
+                                        </motion.div>
                                     )}
 
                                     <p className="text-lime-400 text-base sm:text-lg mb-1">{plan.description}</p>
@@ -308,20 +325,15 @@ function Pricing() {
 
                                 <div className="space-y-4">
                                     {plan.features.map((feature, featureIndex) => (
-                                        <motion.div
+                                        <div
                                             key={featureIndex}
-                                            custom={featureIndex}
-                                            variants={featureVariants}
-                                            initial="hidden"
-                                            whileInView="visible"
-                                            viewport={{ once: true }}
                                             className="flex items-start group"
                                         >
                                             <Check size={18} className="text-lime-400 mr-3 flex-shrink-0 mt-0.5 group-hover:scale-110 transition-transform duration-300" />
                                             <span className="text-white/80 text-sm sm:text-base group-hover:text-white transition-colors duration-300">
                                                 {feature}
                                             </span>
-                                        </motion.div>
+                                        </div>
                                     ))}
                                 </div>
                             </div>
