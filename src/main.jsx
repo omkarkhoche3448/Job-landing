@@ -1,7 +1,6 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import App from "./App";
-import MainLayout from "./MainLayout";
 import "./index.css";
 
 // Disable native scroll restoration
@@ -21,8 +20,6 @@ window.addEventListener('load', () => {
 
 createRoot(document.getElementById("root")).render(
     <StrictMode>
-        <MainLayout>
-            <App />
-        </MainLayout>
+        <App />
     </StrictMode>
 );

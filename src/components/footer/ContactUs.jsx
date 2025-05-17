@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState,useEffect  } from "react";
 import PolicyLayout from "./PolicyLayout";
 import { toast } from "react-hot-toast";
 import { Mail, Phone, MapPin } from "lucide-react";
@@ -14,6 +14,14 @@ const ContactUs = () => {
   });
 
   const [isSubmitting, setIsSubmitting] = useState(false);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+    const lenis = window.lenis;
+    if (lenis) {
+      lenis.scrollTo(0, { immediate: true });
+    }
+  }, []);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
