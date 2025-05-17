@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import Button from "../components/Button";
 import { motion } from "framer-motion";
-import { submitEmailToSheet } from "../services/emailService";
+import { submitEmailSubscription } from "../services/GoogleSheet";
 import cursorImage from "../assets/images/cursor-you.svg";
 import { Search, BriefcaseBusiness, Sparkles, Network, BadgeCheck } from "lucide-react";
 
@@ -14,45 +14,33 @@ function Hero() {
         e.preventDefault();
         setIsSubmitting(true);
         
-        try {
-            const result = await submitEmailToSheet(email);
-            
-            if (result.success) {
-                setSubmitStatus({ 
-                    message: result.message, 
-                    type: 'success' 
-                });
-                setEmail('');
-            } else {
-                setSubmitStatus({ 
-                    message: result.message, 
-                    type: 'error' 
-                });
-            }
-
-            // Set a timeout to clear the message after 4 seconds
-            setTimeout(() => {
-                setSubmitStatus({ message: '', type: '' });
-            }, 4000);
-
+        try {            
+            const response = await submitEmailSubscription({ 
+                email: email.trim() 
+            });
+                        
+            setSubmitStatus({ 
+                message: "Thank you for your interest! You'll be notified when we launch.", 
+                type: 'success' 
+            });
+            setEmail('');
         } catch (error) {
+            console.error('Submission error:', error);
             setSubmitStatus({ 
                 message: 'Something went wrong. Please try again later.', 
                 type: 'error' 
             });
-
-            // Set a timeout to clear the message after 4 seconds
+        } finally {
+            setIsSubmitting(false);
             setTimeout(() => {
                 setSubmitStatus({ message: '', type: '' });
             }, 4000);
-        } finally {
-            setIsSubmitting(false);
         }
     };
 
-    // Simplified CSS for the flowing text effect
+    // Update the flowing text style with a more harmonious gradient
     const flowingTextStyle = {
-        backgroundImage: 'linear-gradient(90deg, #4ade80, #22c55e, #4ade80)',
+        backgroundImage: 'linear-gradient(90deg, #99e206, #84cc16, #99e206)',
         backgroundSize: '200% 100%',
         animation: 'flowingText 8s linear infinite',
         WebkitBackgroundClip: 'text',
@@ -172,15 +160,18 @@ function Hero() {
                             required
                             disabled={isSubmitting}
                         />
-                        <Button
-                            size="sm"
-                            className="whitespace-nowrap gap-2 group cursor-pointer text-sm px-3 py-1.5 md:text-base md:px-3 md:py-2"
+                        <button
                             type="submit"
-                            variant="primary"
                             disabled={isSubmitting}
+                            className="whitespace-nowrap rounded-full text-black font-medium text-sm px-3 py-1.5 md:text-base md:px-3 md:py-2"
+                            style={{
+                                background: 'linear-gradient(90deg, #99e206, #84cc16, #99e206)',
+                                backgroundSize: '200% 100%',
+                                animation: 'flowingText 8s linear infinite'
+                            }}
                         >
                             {isSubmitting ? 'Submitting...' : 'I\'m Interested'}
-                        </Button>
+                        </button>
                     </div>
                     {submitStatus.message && (
                         <motion.div

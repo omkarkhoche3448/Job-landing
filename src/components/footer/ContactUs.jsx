@@ -3,6 +3,7 @@ import PolicyLayout from "./PolicyLayout";
 import { toast } from "react-hot-toast";
 import { Mail, Phone, MapPin } from "lucide-react";
 import { companyInfo, contactFormSubjects } from "./data/footerSectionData";
+import { submitContactForm } from "../../services/GoogleSheet";
 
 const ContactUs = () => {
   const [formData, setFormData] = useState({
@@ -19,11 +20,12 @@ const ContactUs = () => {
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
     
-    setTimeout(() => {
+    try {
+      await submitContactForm(formData);
       toast.success("Thank you! Your message has been sent successfully.");
       setFormData({
         name: "",
@@ -31,8 +33,12 @@ const ContactUs = () => {
         subject: "",
         message: "",
       });
+    } catch (error) {
+      toast.error("Failed to send message. Please try again later.");
+      console.error("Contact form submission error:", error);
+    } finally {
       setIsSubmitting(false);
-    }, 1500);
+    }
   };
 
   return (

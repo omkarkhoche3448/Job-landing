@@ -20,14 +20,6 @@ export default defineConfig({
         drop_console: true,
       },
     },
-    rollupOptions: {
-      output: {
-        manualChunks: {
-          vendor: ['react', 'react-dom', 'react-router-dom', 'framer-motion'],
-          ui: ['tailwind-merge', 'lucide-react'],
-        },
-      },
-    },
   },
   optimizeDeps: {
     include: ['react', 'react-dom', 'react-router-dom', 'framer-motion', 'tailwind-merge'],
