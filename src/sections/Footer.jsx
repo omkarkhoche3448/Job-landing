@@ -15,12 +15,26 @@ const Footer = () => {
                 const id = href.replace("#", "");
                 const element = document.getElementById(id);
                 if (element) {
-                    element.scrollIntoView({ behavior: "smooth" });
+                    const lenis = window.lenis;
+                    if (lenis) {
+                        lenis.scrollTo(element, { offset: -80 });
+                    } else {
+                        element.scrollIntoView({ behavior: "smooth" });
+                    }
                 }
             }
         } else {
+            // For non-hash links (like /contact, /privacy, etc.)
             navigate(href);
+            // Force scroll to top immediately
             window.scrollTo(0, 0);
+            // Also use Lenis for smooth scrolling if available
+            const lenis = window.lenis;
+            if (lenis) {
+                setTimeout(() => {
+                    lenis.scrollTo(0, { immediate: true });
+                }, 0);
+            }
         }
     };
 

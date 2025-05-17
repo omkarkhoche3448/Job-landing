@@ -23,13 +23,13 @@ const FeatureCard = ({ title, description, icon, index }) => {
 const WorkflowStep = ({ title, description, icon, iconBg, index }) => {
     return (
         <div className="flex items-start relative">
-            <div className={`${iconBg} p-3 rounded-lg bg-gradient-to-br from-white/10 to-transparent shrink-0 z-10 border border-white/10`}>
+            {index < 3 && (
+                <div className="absolute top-11 left-6 h-20 border-l border-dashed border-white/10 -z-10"></div>
+            )}
+            
+            <div className={`${iconBg} p-3 rounded-lg bg-gradient-to-br from-white/10 to-transparent shrink-0 relative z-10 border border-white/10`}>
                 {icon}
             </div>
-
-            {index < 3 && (
-                <div className="absolute top-8 left-6 h-16 border-l border-dashed border-white/10 z-0"></div>
-            )}
 
             <div className="ml-4">
                 <h3 className="text-lg font-semibold mb-2">{title}</h3>
